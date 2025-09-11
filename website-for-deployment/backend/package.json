@@ -1,0 +1,45 @@
+{
+  "name": "avocado-ai-website",
+  "version": "1.0.0",
+  "description": "Avocado AI 智能資安防護平台網站",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.158.0",
+    "@react-three/fiber": "^8.15.0",
+    "@react-three/cannon": "^6.6.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.0.0"
+  },
+  "keywords": [
+    "avocado",
+    "ai",
+    "cybersecurity",
+    "xdr",
+    "threat-detection"
+  ],
+  "author": "Avocado AI Team",
+  "license": "MIT"
+}
+
+
+
+
+
+
+
+
+
+
+

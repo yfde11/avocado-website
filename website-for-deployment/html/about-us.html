@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="about.page.title">關於我們 - Avocado AI</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600&family=Urbanist:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="../js/language-switcher.js"></script>
+    <style>
+        /* Particles 背景效果容器樣式 */
+        #particles-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        /* 確保內容在 Particles 效果上方 */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-text {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-title {
+            position: relative;
+            z-index: 10;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-description {
+            position: relative;
+            z-index: 10;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+        }
+        
+        .floating-shapes {
+            position: relative;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>Avocado AI</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link">Products</a>
+                                    <a href="about-us.html" class="nav-link">About us</a>
+                <a href="join-us.html" class="nav-link">Join us</a>
+                <a href="contact-us.html" class="nav-link">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 導航欄 JavaScript 功能 -->
+    <script>
+        // 導航欄滾動效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 導航連結點擊效果
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // 移除所有 active 類
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                // 添加 active 類到當前點擊的連結
+                this.classList.add('active');
+            });
+        });
+
+        // 設置當前頁面為 active
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = 'about-us.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // 根據當前頁面設置 active 狀態
+            if (currentPage.includes('about')) {
+                navLinks.forEach(link => {
+                    if (link.textContent.toLowerCase().includes('about')) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+        
+        // 強制初始化語言切換器
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                if (window.AvocadoLanguage && !document.querySelector('.language-switcher')) {
+                    // 強制重新創建語言切換按鈕
+                    const event = new Event('load');
+                    window.dispatchEvent(event);
+                }
+            }, 500);
+        });
+    </script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+        
+        // 添加錯誤處理
+        window.addEventListener('error', function(e) {
+            console.error('JavaScript Error:', e.error);
+        });
+
+        // 團隊數據
+        const teamData = [
+            {
+                group: "AI 資訊分析技術組",
+                members: [
+                    "資深 AI 資安工程師 (Lead AI Security Engineer)",
+                    "AI 研究工程師 (AI Research Engineer)",
+                    "AI 防護工程師 (Junior Engineer)"
+                ]
+            },
+            {
+                group: "資安雲端基礎建設組",
+                members: [
+                    "雲端後端工程師 (Cloud Backend Engineer)",
+                    "雲端基礎架構工程師 (DevOps Engineer)",
+                    "開發實習工程師 (Junior Engineer)"
+                ]
+            },
+            {
+                group: "資安顧問服務組",
+                members: [
+                    "資深解決方案工程師 (Senior Engineer)",
+                    "解決方案工程師 (Solution Engineer)",
+                    "助理工程師 (Junior Engineer)"
+                ]
+            }
+        ];
+
+                // 團隊組件
+        const TeamSection = () => {
+            return (
+                <div className="team-section">
+                    <h2 data-translate="about.team.title">我們的團隊</h2>
+                    <div className="team-grid">
+                        {teamData.map((group, index) => (
+                            <div key={index} className="team-group">
+                                <h3 data-translate={`about.team.group${index + 1}`}>{group.group}</h3>
+                                <ul>
+                                    {group.members.map((member, memberIndex) => (
+                                        <li key={memberIndex} data-translate={`about.team.member${index * 3 + memberIndex + 1}`}>{member}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        // 主要組件
+        const AboutUs = () => {
+            const [scrollY, setScrollY] = useState(0);
+            const [visibleNodes, setVisibleNodes] = useState(new Set());
+
+            useEffect(() => {
+                const handleScroll = () => setScrollY(window.scrollY);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <div className="about-us">
+                    {/* Hero Section */}
+                    <section className="about-hero-section">
+                        <div className="about-hero-background" style={{ transform: `translateY(${scrollY * 0.5}px)` }}>
+                            {/* Particles 背景效果容器 */}
+                            <div id="particles-background"></div>
+                            
+                            <div className="about-floating-shapes">
+                                <div className="about-shape about-shape-1"></div>
+                                <div className="about-shape about-shape-2"></div>
+                                <div className="about-shape about-shape-3"></div>
+                                <div className="about-shape about-shape-4"></div>
+                            </div>
+                        </div>
+                        <div className="about-hero-content">
+                            <h1 className="about-hero-title" data-translate="about.hero.title">Welcome to Avocado</h1>
+                            <div className="about-hero-description">
+                                <p data-translate="about.hero.desc1">
+                                    ThreatCado XDR，新世代資安智能服務平台，專為中小型企業量身打造。
+                                    我們結合全面的端點偵測 (EDR)、精準的網路偵測與回應 (NDR)、以及以風險驅動的威脅低位特徵，實現高效應對與即時事件響應。
+                                </p>
+                                <p data-translate="about.hero.desc2">
+                                    我們不只是技術的供應者，因此 ThreatCado XDR 不僅提供整合數據、威脅情報與 AI 驅動的防禦機制，還為用戶實現跨部門支援與數據整合，包含在地威脅情報的引導、全球性威脅資訊的同步與共享，確保您的企業能夠即時掌握最新威脅，並同時享受最直觀且完整的資安保護與支援。
+                                </p>
+                            </div>
+        </div>
+    </section>
+
+                    {/* Company Overview Section */}
+                    <section className="company-overview">
+                        <div className="container">
+                            <h2 className="section-title" data-translate="about.company.title">公司簡介 Company Overview</h2>
+                            <div className="overview-content">
+                                <div className="overview-text">
+                                    <p data-translate="about.company.desc1">
+                                        酪梨智慧整體有限公司（AvocadoAI）創立於 2024 年 12 月 27 日，是一間專注於 AI 資安解決整合應用的技術團隊，核心技術結合產業 AI 行為分析、關鍵防護管理，以及跨平台的 XDR 安全整合。
+                                    </p>
+                                    <p data-translate="about.company.desc2">我們的關鍵產品包括：</p>
+                                    <ul>
+                                        <li><strong data-translate="about.company.product1.title">ThreatCado XDR：</strong><span data-translate="about.company.product1.desc">關於整體 XDR 平台，整合 SIEM、SOAR 與 LLM 威脅分析</span></li>
+                                        <li><strong data-translate="about.company.product2.title">SenseL 安全助手：</strong><span data-translate="about.company.product2.desc">具備情境識別、風險預測與即時應對的 AI 智能工具</span></li>
+                                    </ul>
+                                </div>
+                                <div className="overview-visual">
+                                    <div className="product-showcase">
+                                                                                <div className="product-item">
+                                            <div className="product-icon">🛡️</div>
+                                            <h3 data-translate="about.company.product1.name">ThreatCado XDR</h3>
+                                            <p data-translate="about.company.product1.subtitle">整合式資安防護平台</p>
+                                        </div>
+                                        <div className="product-item">
+                                            <div className="product-icon">🤖</div>
+                                            <h3 data-translate="about.company.product2.name">SenseL 安全助手</h3>
+                                            <p data-translate="about.company.product2.subtitle">AI 智能威脅分析</p>
+                                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+                    {/* Philosophy Section */}
+                    <section className="philosophy-section">
+                        <div className="container">
+                            <div className="philosophy-content">
+                                                                <h2 data-translate="about.philosophy.title">關於我們</h2>
+                                <div className="philosophy-quote">
+                                    <h3 data-translate="about.philosophy.quote">【以簡馭繁】</h3>
+                                    <p data-translate="about.philosophy.desc1">在複雜中找到簡單，讓一切都更高效。</p>
+                                    <p data-translate="about.philosophy.desc2">每一個強化的功能、每一項設計，都基於您的需求，讓操作、維護、協作更加順暢與高效。</p>
+                                </div>
+            </div>
+                    </div>
+                    </section>
+
+                    
+
+                    {/* 科技感時間線區域 */}
+                    <section className="tech-timeline-section">
+                        <div className="container">
+                            <div className="timeline-header">
+                                <h2 className="timeline-main-title" data-translate="about.timeline.title">AvocadoAI 公司發展時間線</h2>
+                                <p className="timeline-subtitle" data-translate="about.timeline.subtitle">從種子到開花結果的成長歷程</p>
+                                <div className="timeline-instruction">
+                                    <i className="fas fa-hand-pointer"></i>
+                                    <span data-translate="about.timeline.instruction">點擊階段標題查看詳細內容</span>
+                                    <button className="clear-content-btn" onClick={() => {
+                                        setVisibleNodes(new Set());
+                                        setClickedNodes(new Set());
+                                    }}>
+                                        <i className="fas fa-eye-slash"></i>
+                                        <span data-translate="about.timeline.clear">隱藏所有區塊</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <TechTimeline visibleNodes={visibleNodes} setVisibleNodes={setVisibleNodes} />
+                        </div>
+                    </section>
+
+                    {/* Vision Section */}
+                    <section className="vision-section">
+                        <div className="container">
+                            <h2 className="section-title" data-translate="about.vision.title">願景與使命 Vision & Mission</h2>
+                            <div className="vision-content">
+                                <div className="vision-quote">
+                                    <h3 data-translate="about.vision.quote">「讓 AI 成為保護位作的守護者，成就下一個資安轉角」</h3>
+                                </div>
+                                <div className="vision-description">
+                                    <p data-translate="about.vision.desc1">
+                                        我們的使命，是為企業打造「更聰明、更精準、更有彈性」的防禦策略，尤其著重於中小型企業資安防禦力的提升。
+                                    </p>
+                                    <p data-translate="about.vision.desc2">
+                                        我們相信，科技應該是與人並肩作戰的夥伴，而非冷冰冰的工具。透過 ThreatCado，我們將科技的溫度轉化成資安防護的能量，確保每一位使用者都能在更安全的環境中，安心成長、盡情生活。
+                                    </p>
+                                </div>
+                            </div>
+        </div>
+    </section>
+
+                    {/* Team Section */}
+                    <section className="team-section-wrapper">
+                        <div className="container">
+                            <TeamSection />
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="footer">
+                        <div className="container">
+                            <div className="footer-content">
+                                <div className="footer-info">
+                                    <h3>Avocado AI</h3>
+                                    <p data-translate="about.footer.platform">新世代資安智能服務平台</p>
+                                </div>
+                                <div className="footer-links">
+                                    <a href="index.html" data-translate="about.footer.home">首頁</a>
+                                    <a href="products.html" data-translate="about.footer.products">產品</a>
+                                    <a href="about-us.html" data-translate="about.footer.about">關於我們</a>
+                                    <a href="join-us.html" data-translate="about.footer.join">加入我們</a>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        // 科技感時間線組件
+        const TechTimeline = ({ visibleNodes, setVisibleNodes }) => {
+            const [hoveredNode, setHoveredNode] = useState(null);
+            const [clickedNodes, setClickedNodes] = useState(new Set());
+            const canvasRef = useRef(null);
+            const containerRef = useRef(null);
+
+            const getCurrentLanguage = () => {
+                return window.AvocadoLanguage ? window.AvocadoLanguage.getCurrentLanguage() : 'zh-TW';
+            };
+            
+            const getStageTitle = (nodeId) => {
+                const stageTitles = {
+                    '01': getCurrentLanguage() === 'zh-TW' ? '種子期' : 'Seed',
+                    '02': getCurrentLanguage() === 'zh-TW' ? '萌芽期' : 'Germination',
+                    '03': getCurrentLanguage() === 'zh-TW' ? '生長期' : 'Growth',
+                    '04': getCurrentLanguage() === 'zh-TW' ? '開花期' : 'Flowering',
+                    '05': getCurrentLanguage() === 'zh-TW' ? '結果期' : 'Fruiting'
+                };
+                return stageTitles[nodeId] || nodeId;
+            };
+            
+            const timelineData = [
+                {
+                    id: "01",
+                    title: getCurrentLanguage() === 'zh-TW' ? "種子期" : "Seed Stage",
+                    subtitle: getCurrentLanguage() === 'zh-TW' ? "發現問題的開始" : "The Beginning of Problem Discovery",
+                    description: getCurrentLanguage() === 'zh-TW' ? "在一次與中小企業主的資安檢測訪談中，我們發現市場常見的監控系統缺一不可，「我們該不該自己開發 XDR 來整合各類資安功能？」事件發生的背後有人在操縱，根本不是巧合，這是市場的普遍需求，且潛藏著強大的市場潛力，我們決定從這裡開始。" : "During cybersecurity assessment interviews with small and medium enterprise owners, we discovered that market-common monitoring systems are indispensable. \"Should we develop our own XDR to integrate various cybersecurity functions?\" The events happening behind the scenes are not coincidences but are being manipulated by someone. This is a universal market demand with strong market potential, and we decided to start from here.",
+                    x: 0.1,
+                    y: 0.1,
+                    color: "#8BBF9F",
+                    side: "left"
+                },
+                {
+                    id: "02",
+                    title: getCurrentLanguage() === 'zh-TW' ? "萌芽期" : "Germination Stage",
+                    subtitle: getCurrentLanguage() === 'zh-TW' ? "技術原型成形" : "Technical Prototype Formation",
+                    description: getCurrentLanguage() === 'zh-TW' ? "隨著想法迅速落實，我們的原型產品應運而生，並推出第一代「ThreatCado XDR」與 AI 智能助手「SenseL」。我們導入 LLM（大型語言模型）與 RAG 技術，讓 SenseL 不只是回應指令，而是能理解情境、協助分析人員調整策略，主動阻擋威脅，化身為真正的夥伴型守護者。" : "As ideas rapidly materialized, our prototype product emerged, launching the first generation \"ThreatCado XDR\" and AI intelligent assistant \"SenseL\". We introduced LLM (Large Language Model) and RAG technology, making SenseL not just respond to commands, but understand context, assist analysts in adjusting strategies, actively block threats, and become a true partner-type guardian.",
+                    x: 0.9,
+                    y: 0.25,
+                    color: "#A39BBE",
+                    side: "right"
+                },
+                {
+                    id: "03",
+                    title: getCurrentLanguage() === 'zh-TW' ? "生長期" : "Growth Stage",
+                    subtitle: getCurrentLanguage() === 'zh-TW' ? "快速拓展" : "Rapid Expansion",
+                    description: getCurrentLanguage() === 'zh-TW' ? "2024 年是我們的「階段里程碑」年，這一年，我們將增長成果走進世界舞台。參展美國 CES 消費電子展，展現跨境資安創新的影響力與整合能力。獲選至 PITCH 新創競賽代表，與全球 AI 資安新創並駕齊驅。" : "2024 is our \"milestone\" year. This year, we brought our growth achievements to the world stage. We exhibited at the US CES Consumer Electronics Show, demonstrating the influence and integration capabilities of cross-border cybersecurity innovation. We were selected as representatives for the PITCH startup competition, competing alongside global AI cybersecurity startups.",
+                    x: 0.1,
+                    y: 0.5,
+                    color: "#92A8C0",
+                    side: "left"
+                },
+                {
+                    id: "04",
+                    title: getCurrentLanguage() === 'zh-TW' ? "開花期" : "Flowering Stage",
+                    subtitle: getCurrentLanguage() === 'zh-TW' ? "走進實務、落地應用" : "Entering Practice and Market Application",
+                    description: getCurrentLanguage() === 'zh-TW' ? "累積的同時，我們同時落地市場，落實「資安普及化」的理念。透過 SBIR 中小企業創新計畫，我們實際帶資安防護進入新竹某產業園區，並在測試區合作推出 ThreatCado 系統，將跨平台端口數據整合落實。" : "While accumulating experience, we simultaneously entered the market, implementing the concept of \"cybersecurity popularization\". Through the SBIR Small Business Innovation Research program, we actually brought cybersecurity protection into an industrial park in Hsinchu, and cooperated with the testing area to launch the ThreatCado system, implementing cross-platform port data integration.",
+                    x: 0.9,
+                    y: 0.75,
+                    color: "#B8D4C3",
+                    side: "right"
+                },
+                {
+                    id: "05",
+                    title: getCurrentLanguage() === 'zh-TW' ? "結果期" : "Fruiting Stage",
+                    subtitle: getCurrentLanguage() === 'zh-TW' ? "持續創新與成長" : "Continuous Innovation and Growth",
+                    description: getCurrentLanguage() === 'zh-TW' ? "展望未來，我們將持續深耕 AI 資安領域，不斷創新技術與服務模式，為更多企業提供更優質的資安防護解決方案，成為業界領先的智能資安服務提供商。" : "Looking to the future, we will continue to deepen our expertise in AI cybersecurity, continuously innovate technology and service models, provide better cybersecurity protection solutions for more enterprises, and become a leading intelligent cybersecurity service provider in the industry.",
+                    x: 0.1,
+                    y: 0.9,
+                    color: "#D4A5A5",
+                    side: "left"
+                }
+            ];
+
+            useEffect(() => {
+                const canvas = canvasRef.current;
+                if (!canvas) return;
+
+                const ctx = canvas.getContext('2d');
+                if (!ctx) return;
+
+                const resizeCanvas = () => {
+                    if (containerRef.current) {
+                        const container = containerRef.current;
+                        canvas.width = container.offsetWidth;
+                        canvas.height = container.offsetHeight;
+                        drawTimeline();
+                    }
+                };
+
+                const drawTimeline = () => {
+                    const { width, height } = canvas;
+                    ctx.clearRect(0, 0, width, height);
+
+                    // 繪製垂直彎曲路徑
+                    ctx.beginPath();
+                    ctx.lineWidth = 4;
+                    ctx.lineCap = 'round';
+                    ctx.setLineDash([20, 10]);
+                    
+                    // 創建垂直的 S 形彎曲路徑
+                    const centerX = width * 0.5;
+                    const points = [
+                        { x: centerX, y: height * 0.1 },
+                        { x: centerX + width * 0.15, y: height * 0.3 },
+                        { x: centerX - width * 0.15, y: height * 0.5 },
+                        { x: centerX + width * 0.15, y: height * 0.7 },
+                        { x: centerX - width * 0.15, y: height * 0.9 }
+                    ];
+
+                    ctx.moveTo(points[0].x, points[0].y);
+                    
+                    for (let i = 1; i < points.length; i++) {
+                        const prev = points[i - 1];
+                        const curr = points[i];
+                        
+                        // 創建平滑的貝塞爾曲線
+                        const cp1x = prev.x;
+                        const cp1y = prev.y + (curr.y - prev.y) * 0.3;
+                        const cp2x = curr.x;
+                        const cp2y = curr.y - (curr.y - prev.y) * 0.3;
+                        
+                        ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, curr.x, curr.y);
+                    }
+
+                    // 創建柔和的漸層
+                    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+                    gradient.addColorStop(0, '#8BBF9F');
+                    gradient.addColorStop(0.25, '#A39BBE');
+                    gradient.addColorStop(0.5, '#92A8C0');
+                    gradient.addColorStop(0.75, '#B8D4C3');
+                    gradient.addColorStop(1, '#C4A5A5');
+                    
+                    ctx.strokeStyle = gradient;
+                    ctx.stroke();
+
+                    // 添加柔和的發光效果
+                    ctx.shadowColor = '#8BBF9F';
+                    ctx.shadowBlur = 15;
+                    ctx.stroke();
+                    ctx.shadowBlur = 0;
+
+                    // 繪製節點
+                    timelineData.forEach((node, index) => {
+                        const x = node.x * width;
+                        const y = node.y * height;
+                        
+                        // 節點外圈光暈（放大）
+                        ctx.beginPath();
+                        ctx.arc(x, y, 40, 0, Math.PI * 2);
+                        const glowGradient = ctx.createRadialGradient(x, y, 0, x, y, 40);
+                        glowGradient.addColorStop(0, `${node.color}60`);
+                        glowGradient.addColorStop(0.5, `${node.color}30`);
+                        glowGradient.addColorStop(1, `${node.color}00`);
+                        ctx.fillStyle = glowGradient;
+                        ctx.fill();
+                        
+                        // 節點外圈（放大）
+                        ctx.beginPath();
+                        ctx.arc(x, y, 30, 0, Math.PI * 2);
+                        ctx.fillStyle = node.color;
+                        ctx.fill();
+                        
+                        // 節點內圈（放大）
+                        ctx.beginPath();
+                        ctx.arc(x, y, 25, 0, Math.PI * 2);
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.fill();
+                        
+                        // 階段名稱（取代數字編號）
+                        const stageName = getStageTitle(node.id);
+                        ctx.fillStyle = node.color;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        
+                        // 根據語言調整字體和顯示方式
+                        if (getCurrentLanguage() === 'zh-TW') {
+                            ctx.font = 'bold 11px Inter, "Microsoft JhengHei", sans-serif';
+                            if (stageName.length > 2) {
+                                // 分兩行顯示，例如："種子" 和 "期"
+                                const firstPart = stageName.substring(0, 2);
+                                const secondPart = stageName.substring(2);
+                                ctx.fillText(firstPart, x, y - 5);
+                                if (secondPart) {
+                                    ctx.fillText(secondPart, x, y + 7);
+                                }
+                            } else {
+                                ctx.fillText(stageName, x, y);
+                            }
+                        } else {
+                            // 英文版本
+                            ctx.font = 'bold 9px Inter';
+                            ctx.fillText(stageName, x, y);
+                        }
+                    });
+                };
+
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+                
+                // 添加路徑動畫效果
+                let animationFrame;
+                const animatePath = () => {
+                    const time = Date.now() * 0.001;
+                    const dashOffset = (time * 30) % 30; // 虛線移動速度
+                    ctx.setLineDash([20, 10]);
+                    ctx.lineDashOffset = -dashOffset;
+                    drawTimeline();
+                    animationFrame = requestAnimationFrame(animatePath);
+                };
+                
+                // 延遲啟動動畫，讓節點先出現
+                setTimeout(() => {
+                    animatePath();
+                }, 2000);
+                
+                return () => {
+                    window.removeEventListener('resize', resizeCanvas);
+                    if (animationFrame) {
+                        cancelAnimationFrame(animationFrame);
+                    }
+                };
+            }, []);
+
+            return (
+                <div ref={containerRef} className="tech-timeline-container">
+                    <canvas 
+                        ref={canvasRef} 
+                        className="tech-timeline-canvas"
+                    />
+                    
+                    {timelineData.map((node, index) => (
+                        <div
+                            key={node.id}
+                            className={`timeline-node ${clickedNodes.has(node.id) ? 'clicked' : ''}`}
+                            style={{
+                                left: `${node.x * 100}%`,
+                                top: `${node.y * 100}%`,
+                                transform: 'translate(-50%, -50%)',
+                                animationDelay: `${index * 0.3}s`
+                            }}
+                            onClick={() => {
+                                setHoveredNode(node.id);
+                                setVisibleNodes(prev => new Set([...prev, node.id]));
+                                setClickedNodes(prev => new Set([...prev, node.id]));
+                            }}
+                        >
+                            <div className="node-pulse"></div>
+                            <div className="node-click-hint">
+                                <i className="fas fa-hand-pointer"></i>
+                            </div>
+                            {(hoveredNode === node.id || visibleNodes.has(node.id)) && (
+                                <div className={`node-tooltip ${node.side === 'right' ? 'tooltip-right' : 'tooltip-left'}`}>
+                                    <div className="tooltip-header">
+                                        <h3 className="tooltip-title">{node.title}</h3>
+                                        <p className="tooltip-subtitle">{node.subtitle}</p>
+                                    </div>
+                                    <p className="tooltip-description">{node.description}</p>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            );
+        };
+
+        // TechTimeline 組件已整合到 AboutUs 組件中
+        
+        // Particles 背景效果組件
+        const Particles = () => {
+            const canvasRef = useRef(null);
+            const containerRef = useRef(null);
+            
+            useEffect(() => {
+                const canvas = canvasRef.current;
+                const ctx = canvas.getContext('2d');
+                let animationId;
+                
+                const resizeCanvas = () => {
+                    const container = containerRef.current;
+                    if (container) {
+                        canvas.width = container.offsetWidth;
+                        canvas.height = container.offsetHeight;
+                    }
+                };
+                
+                const particles = [];
+                const particleCount = 50;
+                
+                // 創建粒子
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        size: Math.random() * 3 + 1,
+                        opacity: Math.random() * 0.5 + 0.3,
+                        color: ['#8BBF9F', '#A39BBE', '#92A8C0', '#B8D4C3'][Math.floor(Math.random() * 4)]
+                    });
+                }
+                
+                const animate = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    // 更新和繪製粒子
+                    particles.forEach(particle => {
+                        particle.x += particle.vx;
+                        particle.y += particle.vy;
+                        
+                        // 邊界檢查
+                        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+                        
+                        // 繪製粒子
+                        ctx.beginPath();
+                        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(${particle.color === '#8BBF9F' ? '139, 191, 159' : 
+                                               particle.color === '#A39BBE' ? '163, 155, 190' : 
+                                               particle.color === '#92A8C0' ? '146, 168, 192' : 
+                                               '184, 212, 195'}, ${particle.opacity})`;
+                        ctx.fill();
+                        
+                        // 繪製連接線
+                        particles.forEach(otherParticle => {
+                            const dx = particle.x - otherParticle.x;
+                            const dy = particle.y - otherParticle.y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+                            
+                            if (distance < 100) {
+                                ctx.beginPath();
+                                ctx.moveTo(particle.x, particle.y);
+                                ctx.lineTo(otherParticle.x, otherParticle.y);
+                                ctx.strokeStyle = `rgba(139, 191, 159, ${0.1 * (1 - distance / 100)})`;
+                                ctx.lineWidth = 1;
+                                ctx.stroke();
+                            }
+                        });
+                    });
+                    
+                    animationId = requestAnimationFrame(animate);
+                };
+                
+                resizeCanvas();
+                animate();
+                
+                const resizeObserver = new ResizeObserver(resizeCanvas);
+                if (containerRef.current) {
+                    resizeObserver.observe(containerRef.current);
+                }
+                
+                return () => {
+                    cancelAnimationFrame(animationId);
+                    resizeObserver.disconnect();
+                };
+            }, []);
+            
+            return (
+                <div ref={containerRef} id="particles-background">
+                    <canvas 
+                        ref={canvasRef} 
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%'
+                        }}
+                    />
+                </div>
+            );
+        };
+        
+        // 渲染應用
+        try {
+            console.log('Attempting to render AboutUs component...');
+            ReactDOM.render(<AboutUs />, document.getElementById('root'));
+            console.log('AboutUs component rendered successfully');
+        } catch (error) {
+            console.error('Error rendering AboutUs:', error);
+            console.error('Error stack:', error.stack);
+            // 渲染一個簡單的錯誤頁面
+            document.getElementById('root').innerHTML = '<div style="padding: 20px; color: red; font-family: Arial, sans-serif;"><h2>Error loading About Us page</h2><p>Please check console for details.</p><p>Error: ' + error.message + '</p></div>';
+        }
+        
+        // 渲染 Particles 背景
+        ReactDOM.render(<Particles />, document.getElementById('particles-background'));
+    </script>
+    
+    <script src="../js/script.js"></script>
+</body>
+</html>
