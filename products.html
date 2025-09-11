@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="products.page.title">Products - Avocado AI 智能資安防護平台</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="language-switcher.js"></script>
+    <script>
+        // 強制初始化語言切換器
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                if (window.AvocadoLanguage && !document.querySelector('.language-switcher')) {
+                    // 強制重新創建語言切換按鈕
+                    const event = new Event('load');
+                    window.dispatchEvent(event);
+                }
+            }, 500);
+        });
+    </script>
+    <style>
+        /* 極光背景效果容器樣式 */
+        #aurora-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        /* 確保標題文字在極光效果上方 */
+        .product-hero-text {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .product-hero-title {
+            position: relative;
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 調整產品品牌圓圈位置 */
+        .product-hero-brand {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* 調整酪梨圖片位置 */
+        .product-hero-avocado {
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* 浮動元素調整 */
+        .product-floating-elements {
+            position: relative;
+            z-index: 5;
+        }
+
+        /* 區塊分割背景樣式 */
+        .product-title-section {
+            background: linear-gradient(135deg, #F8F6F1 0%, #F2F4EF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-title-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(139, 191, 159, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(163, 155, 190, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .product-features-section {
+            background: linear-gradient(135deg, #FEFEFE 0%, #F9F9F9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-features-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 70% 30%, rgba(146, 168, 192, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(184, 212, 195, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .product-architecture-section {
+            background: linear-gradient(135deg, #F2F4EF 0%, #EAEDE8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-architecture-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 40% 60%, rgba(163, 155, 190, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 60% 40%, rgba(139, 191, 159, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .product-tech-section {
+            background: linear-gradient(135deg, #F8F6F1 0%, #F0F2ED 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-tech-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 80% 80%, rgba(146, 168, 192, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 20% 20%, rgba(184, 212, 195, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .product-services-section {
+            background: linear-gradient(135deg, #FEFEFE 0%, #F6F4EF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 50% 20%, rgba(163, 155, 190, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(139, 191, 159, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* 確保內容在背景上方 */
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 區塊間的分隔線效果 */
+        .product-title-section::after,
+        .product-features-section::after,
+        .product-architecture-section::after,
+        .product-tech-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 191, 159, 0.3), transparent);
+        }
+
+        /* 每個區塊的裝飾元素 */
+        .product-title-section .container::before,
+        .product-features-section .container::before,
+        .product-architecture-section .container::before,
+        .product-tech-section .container::before,
+        .product-services-section .container::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(139, 191, 159, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>Avocado AI</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link active">Products</a>
+                                    <a href="about-us.html" class="nav-link">About us</a>
+                <a href="join-us.html" class="nav-link">Join us</a>
+                <a href="contact-us.html" class="nav-link">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 返回主頁按鈕 -->
+    <div class="back-to-home">
+        <a href="index.html" class="back-btn">
+            <span data-translate="products.back.home">← 返回主頁</span>
+        </a>
+    </div>
+
+    <!-- 產品頁面主要橫幅 -->
+    <section class="product-hero-section">
+        <div class="product-hero-background">
+            <!-- React 極光背景效果容器 -->
+            <div id="aurora-background"></div>
+            
+            <!-- 背景漸層元素 -->
+            <div class="product-bg-gradient-1"></div>
+            <div class="product-bg-gradient-2"></div>
+            
+            <div class="product-hero-content">
+                <div class="product-hero-left">
+                    <div class="product-hero-text">
+                        <h1 class="product-hero-title">
+                            <span data-translate="products.hero.title.line1">Cute on the</span><br>
+                            <span data-translate="products.hero.title.line2">Outside</span><br>
+                            <span data-translate="products.hero.title.line3">Powerful on</span><br>
+                            <span data-translate="products.hero.title.line4">the Inside</span>
+                        </h1>
+                    </div>
+                    <div class="product-hero-brand">
+                        <div class="product-brand-circle">
+                            <span class="product-brand-text" data-translate="products.hero.brand">Products</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-hero-right">
+                    <div class="product-hero-avocado">
+                        <img src="images/product-avocado.png" alt="Avocado Products" class="product-avocado-image">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 浮動元素 -->
+            <div class="product-floating-elements">
+                <div class="product-floating-circle circle-1"></div>
+                <div class="product-floating-circle circle-2"></div>
+                <div class="product-floating-circle circle-3"></div>
+                <div class="product-floating-circle circle-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 產品標題區域 -->
+    <section class="product-title-section">
+        <div class="container">
+            <div class="product-title-content">
+                <h2 class="product-main-title" data-translate="products.main.title">Avocado Products</h2>
+                <div class="product-divider"></div>
+                <div class="product-overview">
+                    <div class="product-overview-left">
+                        <h3 class="product-overview-title" data-translate="products.overview.title">產品概述</h3>
+                        <p class="product-overview-text" data-translate="products.overview.text">
+                            面對日益複雜且多樣化的資安威脅，中小企業經常因預算有限和專業資安人力短缺而無法有效應對。這導致業務中斷、營運中止等風險的增加，對企業造成重大的影響。本解決方案專為中小型企業（例如製造業）設計，針對資源有限但安全需求高的企業提供一套高效能且高性價比的智能資安防護方案。
+                        </p>
+                    </div>
+                    <div class="product-overview-right">
+                        <p class="product-overview-description" data-translate="products.overview.description">
+                            新世代資安智能服務平台 ThreatCado（XDR）是一款專為中小型企業設計的高效能擴展偵測與回應（XDR）解決方案，結合了先進的端點偵測與回應（EDR）功能，幫助企業有效識別、偵測並防禦各種網路攻擊。透過 AI（資安智能助手 SenseL）技術，進一步提升了威脅偵測與風險管理能力，提供了自動化、智能化的動態風險評估功能，確保企業在運營過程中的安全性。此方案能夠顯著提升企業的整體安全性，同時在現有 IT 環境中實現無縫整合，不僅滿足安全防護需求，更幫助企業以更低的成本有效應對資安挑戰，確保業務持續運行。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 產品特色區域 -->
+    <section class="product-features-section">
+        <div class="container">
+            <div class="product-features-content">
+                <div class="product-features-header">
+                    <h3 class="product-features-title" data-translate="products.features.title">自動化資安獵捕平台，整合 EDR/NDR/SIEM<br>結合 SenseX AI 智能回應機制</h3>
+                </div>
+                <div class="product-architecture">
+                    <div class="architecture-image">
+                        <img src="images/architecture-diagram.png" alt="AI 驅動威脅分析架構圖" class="architecture-img">
+                    </div>
+                    <div class="architecture-info">
+                        <h4 class="architecture-title" data-translate="products.architecture.title">AI 驅動威脅分析架構圖</h4>
+                        <p class="architecture-description" data-translate="products.architecture.description">整合式 XDR 與多元資安資料來源</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SenseL AI 區域 -->
+    <section class="sensel-ai-section">
+        <div class="container">
+            <div class="sensel-content">
+                <h2 class="sensel-title" data-translate="products.sensel.title">SenseL AI</h2>
+                <p class="sensel-description" data-translate="products.sensel.description">
+                    SenseL 作為嵌入 ThreatCado XDR 平台 中的 AI 安全助手，利用 大型語言模型 (LLM) 和 檢索增強生成 (RAG) 技術，將原始安全數據轉化為可操作的知識，極大提升 SOC 分析師的效率。
+                </p>
+                <div class="sensel-features">
+                    <div class="sensel-feature">
+                        <div class="sensel-feature-image">
+                            <img src="images/threat-hunting.png" alt="智能威脅獵捕" class="sensel-feature-img">
+                        </div>
+                        <div class="sensel-feature-overlay">
+                            <h4 class="sensel-feature-title" data-translate="products.sensel.feature1.title">智能威脅獵捕<br>AI-Driven Threat Hunting</h4>
+                        </div>
+                    </div>
+                    <div class="sensel-feature">
+                        <div class="sensel-feature-image">
+                            <img src="images/risk-assessment.png" alt="動態風險評估" class="sensel-feature-img">
+                        </div>
+                        <div class="sensel-feature-overlay">
+                            <h4 class="sensel-feature-title" data-translate="products.sensel.feature2.title">動態風險評估<br>Dynamic Risk Assessment</h4>
+                        </div>
+                    </div>
+                    <div class="sensel-feature">
+                        <div class="sensel-feature-image">
+                            <img src="images/self-learning.png" alt="自我學習與優化" class="sensel-feature-img">
+                        </div>
+                        <div class="sensel-feature-overlay">
+                            <h4 class="sensel-feature-title" data-translate="products.sensel.feature3.title">自我學習與優化<br>Self-learning & Optimization</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 模組介紹區域 -->
+    <section class="modules-section">
+        <div class="container">
+            <div class="modules-content">
+                <h2 class="modules-title" data-translate="products.modules.title">模組介紹</h2>
+                <div class="modules-grid">
+                    <div class="module-item">
+                        <div class="module-image">
+                            <img src="images/edr-module.png" alt="EDR 模組" class="module-img" 
+                                 onload="console.log('EDR 模組圖片載入成功')" 
+                                 onerror="console.error('EDR 模組圖片載入失敗'); this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div style="display:none; color: #666; font-size: 14px;">EDR 模組圖片載入失敗</div>
+                        </div>
+                        <div class="module-info">
+                            <h3 class="module-title" data-translate="products.modules.edr.title">EDR : 端點偵測與回應</h3>
+                            <p class="module-description" data-translate="products.modules.edr.description">
+                                旨在即時偵測與發現端點惡意程式及網路攻擊，並採取必要的回應措施。
+                            </p>
+                            <ul class="module-features">
+                                <li data-translate="products.modules.edr.feature1">核心防護：即時偵測與主動防禦</li>
+                                <li data-translate="products.modules.edr.feature2">部署簡便：一站式端點防護</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="module-item">
+                        <div class="module-image">
+                            <img src="images/ndr-module.png" alt="NDR 模組" class="module-img" 
+                                 onload="console.log('NDR 模組圖片載入成功')" 
+                                 onerror="console.error('NDR 模組圖片載入失敗'); this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div style="display:none; color: #666; font-size: 14px;">NDR 模組圖片載入失敗</div>
+                        </div>
+                        <div class="module-info">
+                            <h3 class="module-title" data-translate="products.modules.ndr.title">NDR: 網路偵測與回應</h3>
+                            <p class="module-description" data-translate="products.modules.ndr.description">
+                                負責整合網路層級的防護，即使在簡化的環境下也能提供全面的網路監控與應變。
+                            </p>
+                            <ul class="module-features">
+                                <li data-translate="products.modules.ndr.feature1">網路層級防護：強化弱環境下的可視性</li>
+                                <li data-translate="products.modules.ndr.feature2">行為分析與即時風險反應</li>
+                                <li data-translate="products.modules.ndr.feature3">自動化事件響應與加速調查</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 售後服務區域 -->
+    <section class="services-section">
+        <div class="container">
+            <div class="services-content">
+                <h2 class="services-title" data-translate="products.services.title">售後服務</h2>
+                <div class="horizontal-services">
+                    <div class="services-horizontal-line"></div>
+                    
+                    <div class="service-item">
+                        <div class="service-marker">
+                            <div class="service-diamond"></div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title" data-translate="products.services.deployment.title">部屬服務</h3>
+                            <p class="service-description" data-translate="products.services.deployment.description">
+                                專業的部署團隊，確保系統快速上線並穩定運行，提供完整的部署文檔和培訓支援。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-marker">
+                            <div class="service-diamond"></div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title" data-translate="products.services.monitoring.title">7x24 實時監控服務</h3>
+                            <p class="service-description" data-translate="products.services.monitoring.description">
+                                全天候不間斷的系統監控，即時發現並處理潛在威脅，確保您的資安防護始終有效。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-marker">
+                            <div class="service-diamond"></div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title" data-translate="products.services.update.title">自動更新與維護</h3>
+                            <p class="service-description" data-translate="products.services.update.description">
+                                智能化的系統更新機制，自動修補安全漏洞，保持防護系統的最新狀態。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-marker">
+                            <div class="service-diamond"></div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title" data-translate="products.services.report.title">安全報告優化建議</h3>
+                            <p class="service-description" data-translate="products.services.report.description">
+                                定期提供詳細的安全分析報告，並根據企業需求提供個性化的優化建議。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Dashboard 介紹區域 -->
+    <section class="dashboard-section">
+        <!-- YouTube 風格背景元素 -->
+        <div class="youtube-bg-elements">
+            <div class="youtube-play-button"></div>
+            <div class="youtube-waves">
+                <div class="wave wave-1"></div>
+                <div class="wave wave-2"></div>
+                <div class="wave wave-3"></div>
+            </div>
+            <div class="youtube-grid-pattern"></div>
+        </div>
+        
+        <div class="container">
+            <div class="dashboard-content">
+                <!-- YouTube 頻道資訊 -->
+                <div class="youtube-channel-info">
+                    <div class="channel-avatar">
+                        <div class="avatar-circle">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="channel-details">
+                        <h2 class="channel-name">AVOCADOAI</h2>
+                        <p class="channel-handle">@AVOCADOAI</p>
+                        <div class="channel-stats">
+                            <span class="subscribers" data-translate="products.dashboard.subscribers">15位訂閱者</span>
+                            <span class="videos" data-translate="products.dashboard.videos">4部影片</span>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/@AVOCADOAI" target="_blank" rel="noopener noreferrer" class="subscribe-btn">
+                        <i class="fab fa-youtube"></i>
+                        <span data-translate="products.dashboard.subscribe">訂閱</span>
+                    </a>
+                </div>
+                
+                <!-- 影片展示區域 -->
+                <div class="videos-showcase">
+                    <h3 class="videos-title" data-translate="products.dashboard.videos.title">精選影片</h3>
+                    <div class="videos-grid">
+                        <a href="https://www.youtube.com/@AVOCADOAI" target="_blank" rel="noopener noreferrer" class="video-card">
+                            <div class="video-thumbnail">
+                                <img src="images/video-thumbnail-1.png" alt="ThreatCado XDR - Lateral Movement (Part1) - Pass the Hash Attack" class="thumbnail-img">
+                                <div class="play-overlay">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div class="video-duration">11:11</div>
+                            </div>
+                            <div class="video-info">
+                                <h4 class="video-title" data-translate="products.dashboard.video1.title">ThreatCado XDR - Lateral Movement (Part1)</h4>
+                                <p class="video-stats" data-translate="products.dashboard.video1.stats">觀看次數:23次・7個月前</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.youtube.com/@AVOCADOAI" target="_blank" rel="noopener noreferrer" class="video-card">
+                            <div class="video-thumbnail">
+                                <img src="images/video-thumbnail-2.png" alt="ThreatCado XDR - Lateral Movement (Part2) - Windows Desktop Demo" class="thumbnail-img">
+                                <div class="play-overlay">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div class="video-duration">10:32</div>
+                            </div>
+                            <div class="video-info">
+                                <h4 class="video-title" data-translate="products.dashboard.video2.title">ThreatCado XDR - Lateral Movement (Part2)</h4>
+                                <p class="video-stats" data-translate="products.dashboard.video2.stats">觀看次數:18次・7個月前</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.youtube.com/@AVOCADOAI" target="_blank" rel="noopener noreferrer" class="video-card">
+                            <div class="video-thumbnail">
+                                <img src="images/video-thumbnail-3.png" alt="ThreatCado XDR - Proactive Defense - Industrial Control Attack Demo" class="thumbnail-img">
+                                <div class="play-overlay">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div class="video-duration">6:47</div>
+                            </div>
+                            <div class="video-info">
+                                <h4 class="video-title" data-translate="products.dashboard.video3.title">ThreatCado XDR - Proactive Defense</h4>
+                                <p class="video-stats" data-translate="products.dashboard.video3.stats">觀看次數:15次・7個月前</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.youtube.com/@AVOCADOAI" target="_blank" rel="noopener noreferrer" class="video-card">
+                            <div class="video-thumbnail">
+                                <img src="images/video-thumbnail-4.png" alt="ThreatCado XDR - Account Creation & Agent Installation - Registration Form" class="thumbnail-img">
+                                <div class="play-overlay">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div class="video-duration">1:02</div>
+                            </div>
+                            <div class="video-info">
+                                <h4 class="video-title" data-translate="products.dashboard.video4.title">ThreatCado XDR - Account Creation & Agent Installation</h4>
+                                <p class="video-stats" data-translate="products.dashboard.video4.stats">觀看次數:12次・7個月前</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="view-all-videos">
+                        <a href="https://www.youtube.com/@AVOCADOAI" target="_blank" rel="noopener noreferrer" class="view-all-btn">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span data-translate="products.dashboard.view.all">查看所有影片</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- 頁腳 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>Avocado AI</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <!-- React 和 ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- 背景效果組件 -->
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // Aurora 背景效果組件
+        const Aurora = ({ colorStops = ["#8BBF9F", "#A39BBE", "#92A8C0"], blend = 0.5, amplitude = 1.0, speed = 0.5, className = "" }) => {
+            const canvasRef = useRef(null);
+
+            useEffect(() => {
+                const canvas = canvasRef.current;
+                if (!canvas) return;
+
+                const ctx = canvas.getContext('2d');
+                if (!ctx) return;
+
+                let animationId;
+                let time = 0;
+
+                const resizeCanvas = () => {
+                    const container = canvas.parentElement;
+                    if (container) {
+                        canvas.width = container.offsetWidth;
+                        canvas.height = container.offsetHeight;
+                    }
+                };
+
+                const createGradient = (ctx, time) => {
+                    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                    
+                    colorStops.forEach((color, index) => {
+                        const offset = (index / (colorStops.length - 1)) + Math.sin(time * 0.001 + index) * 0.1;
+                        gradient.addColorStop(Math.max(0, Math.min(1, offset)), color);
+                    });
+                    
+                    return gradient;
+                };
+
+                const drawAurora = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    const gradient = createGradient(ctx, time);
+                    ctx.fillStyle = gradient;
+                    
+                    ctx.beginPath();
+                    for (let x = 0; x < canvas.width; x++) {
+                        const y = canvas.height / 2 + 
+                                 Math.sin(x * 0.01 + time * 0.001) * amplitude * 50 +
+                                 Math.sin(x * 0.02 + time * 0.002) * amplitude * 30;
+                        
+                        if (x === 0) {
+                            ctx.moveTo(x, y);
+                        } else {
+                            ctx.lineTo(x, y);
+                        }
+                    }
+                    
+                    ctx.lineTo(canvas.width, canvas.height);
+                    ctx.lineTo(0, canvas.height);
+                    ctx.closePath();
+                    ctx.fill();
+                    
+                    time += speed;
+                    animationId = requestAnimationFrame(drawAurora);
+                };
+
+                resizeCanvas();
+                drawAurora();
+                
+                window.addEventListener('resize', resizeCanvas);
+                
+                return () => {
+                    window.removeEventListener('resize', resizeCanvas);
+                    cancelAnimationFrame(animationId);
+                };
+            }, [colorStops, blend, amplitude, speed]);
+
+            return (
+                <canvas 
+                    ref={canvasRef} 
+                    className={`w-full h-full pointer-events-none ${className}`}
+                    style={{ mixBlendMode: 'multiply' }}
+                />
+            );
+        };
+
+        // 渲染 Aurora 背景
+        ReactDOM.render(<Aurora />, document.getElementById('aurora-background'));
+    </script>
+    
+    <!-- 圖片載入狀態檢查 -->
+    <script>
+        // 檢查所有圖片是否正確載入
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            let loadedCount = 0;
+            let totalCount = images.length;
+            
+            images.forEach((img, index) => {
+                img.addEventListener('load', function() {
+                    loadedCount++;
+                    console.log(`圖片 ${index + 1}/${totalCount} 載入成功: ${this.src}`);
+                    
+                    if (loadedCount === totalCount) {
+                        console.log('所有圖片載入完成！');
+                    }
+                });
+                
+                img.addEventListener('error', function() {
+                    console.error(`圖片載入失敗: ${this.src}`);
+                    // 為載入失敗的圖片添加錯誤樣式
+                    this.style.border = '2px solid red';
+                    this.style.backgroundColor = '#ffebee';
+                    this.alt = '圖片載入失敗';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
