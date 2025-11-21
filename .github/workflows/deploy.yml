@@ -5,32 +5,25 @@ on:
     branches:
       - main
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Login to Azure
-        uses: azure/login@v2
+        uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_C529E04E1F294CEBB14FC47625E375EF }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_995CE3CC3C2A4AC2BA6EA5BF4E887A1E }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D4C7B2837144449D9F1F973230756483 }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Prepare ZIP package
         run: |
-          cd website-for-deployment
-          zip -r ../site.zip .
+          cd website-for-deployment/html
+          zip -r ../../site.zip .
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: avocado-web-hpawgvczc7amacda
-          package: site.zip
+          app-name: "avocado-web"
+          package: "site.zip"
