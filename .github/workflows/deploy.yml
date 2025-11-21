@@ -19,8 +19,8 @@ jobs:
 
       - name: Prepare ZIP package
         run: |
-          cd website-for-deployment/html
-          zip -r ../../site.zip .
+          cd website-for-deployment
+          zip -r ../site.zip .
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
