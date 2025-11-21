@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="index.page.title">Avocado AI - 智能資安防護平台</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Satisfy:wght@400&display=swap" rel="stylesheet">
+    <style>
+        /* Ballpit 背景效果容器樣式 */
+        #ballpit-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        /* 確保內容在 Ballpit 效果上方 */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-text {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-title {
+            position: relative;
+            z-index: 10;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-subtitle {
+            position: relative;
+            z-index: 10;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero-buttons {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-avocado {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .floating-elements {
+            position: relative;
+            z-index: 5;
+        }
+        
+        /* 增強按鈕效果 */
+        .hero-btn {
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .hero-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* SEMICON TAIWAN 2025 Banner 樣式 */
+        .semicom-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            display: flex;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            border-top: 2px solid #8B5CF6;
+            border-bottom: 2px solid #8B5CF6;
+        }
+        
+        .banner-left {
+            flex: 2;
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 30%, #8B5CF6 60%, #A855F7 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner-right {
+            flex: 3;
+            background: linear-gradient(135deg, #A855F7 0%, #EC4899 30%, #F97316 70%, #F59E0B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 40px;
+            position: relative;
+            overflow: hidden;
+            gap: 60px;
+        }
+        
+        .brand-container {
+            position: relative;
+            z-index: 3;
+        }
+        
+        .brand-logo {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 50px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            min-width: 280px;
+        }
+        
+        .brand-semicom {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: #1a1a1a;
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        
+        .brand-taiwan {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: #4A148C;
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        
+        .brand-chinese {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2a2a2a;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        
+        .abstract-patterns {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .pattern-circle {
+            position: absolute;
+            border-radius: 50%;
+            animation: floatPattern 8s ease-in-out infinite;
+        }
+        
+        .circle-1 {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            top: 20px;
+            right: 100px;
+            animation-delay: 0s;
+        }
+        
+        .circle-2 {
+            width: 60px;
+            height: 60px;
+            background: rgba(251, 191, 36, 0.4);
+            top: 60px;
+            right: 50px;
+            animation-delay: 2s;
+        }
+        
+        .pattern-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid;
+            animation: rotatePattern 6s linear infinite;
+        }
+        
+        .ring-1 {
+            width: 100px;
+            height: 100px;
+            border-color: rgba(255, 255, 255, 0.25);
+            top: 10px;
+            right: 80px;
+            animation-delay: 1s;
+        }
+        
+        .ring-2 {
+            width: 70px;
+            height: 70px;
+            border-color: rgba(251, 191, 36, 0.5);
+            top: 40px;
+            right: 30px;
+            animation-delay: 3s;
+        }
+        
+        .pattern-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: pulsePattern 4s ease-in-out infinite;
+        }
+        
+        .dot-1 {
+            top: 30px;
+            right: 120px;
+            animation-delay: 0.5s;
+        }
+        
+        .dot-2 {
+            top: 70px;
+            right: 70px;
+            animation-delay: 2.5s;
+        }
+        
+        @keyframes floatPattern {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+        
+        @keyframes rotatePattern {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulsePattern {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+        
+        .banner-year {
+            font-family: 'Inter', sans-serif;
+            font-size: 64px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .banner-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-start;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .detail-icon {
+            font-size: 16px;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+        }
+        
+        .detail-text {
+            white-space: nowrap;
+        }
+        
+        /* 調整導航欄位置，為SEMICON banner留出空間 */
+        .navbar {
+            top: 120px;
+        }
+        
+        /* 調整主要內容區域，為banner和導航欄留出空間 */
+        .hero-section {
+            margin-top: 160px;
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 1024px) {
+            .semicom-banner {
+                height: 100px;
+            }
+            
+            .banner-left {
+                padding: 0 30px;
+            }
+            
+            .banner-right {
+                padding: 0 30px;
+                gap: 40px;
+            }
+            
+            .brand-logo {
+                padding: 15px 40px;
+                min-width: 240px;
+            }
+            
+            .brand-semicom {
+                font-size: 24px;
+            }
+            
+            .brand-taiwan {
+                font-size: 28px;
+            }
+            
+            .brand-chinese {
+                font-size: 14px;
+            }
+            
+            .banner-year {
+                font-size: 48px;
+            }
+            
+            .abstract-patterns {
+                width: 50%;
+            }
+            
+            .navbar {
+                top: 100px;
+            }
+            
+            .hero-section {
+                margin-top: 140px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .semicom-banner {
+                height: 80px;
+                flex-direction: column;
+            }
+            
+            .banner-left {
+                flex: 1;
+                padding: 10px 20px;
+                justify-content: center;
+            }
+            
+            .banner-right {
+                flex: 1;
+                padding: 10px 20px;
+                justify-content: center;
+                gap: 30px;
+            }
+            
+            .brand-logo {
+                padding: 12px 30px;
+                min-width: 200px;
+            }
+            
+            .brand-semicom {
+                font-size: 18px;
+            }
+            
+            .brand-taiwan {
+                font-size: 22px;
+            }
+            
+            .brand-chinese {
+                font-size: 12px;
+            }
+            
+            .banner-year {
+                font-size: 36px;
+            }
+            
+            .banner-details {
+                gap: 6px;
+            }
+            
+            .detail-item {
+                font-size: 12px;
+            }
+            
+            .abstract-patterns {
+                display: none;
+            }
+            
+            .navbar {
+                top: 80px;
+            }
+            
+            .hero-section {
+                margin-top: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .semicom-banner {
+                height: 70px;
+            }
+            
+            .banner-left {
+                padding: 8px 15px;
+            }
+            
+            .banner-right {
+                padding: 8px 15px;
+                gap: 20px;
+            }
+            
+            .brand-logo {
+                padding: 10px 25px;
+                min-width: 180px;
+            }
+            
+            .brand-semicom {
+                font-size: 16px;
+            }
+            
+            .brand-taiwan {
+                font-size: 18px;
+            }
+            
+            .brand-chinese {
+                font-size: 10px;
+            }
+            
+            .banner-year {
+                font-size: 28px;
+            }
+            
+            .banner-details {
+                gap: 4px;
+            }
+            
+            .detail-item {
+                font-size: 10px;
+            }
+            
+            .navbar {
+                top: 70px;
+            }
+            
+            .hero-section {
+                margin-top: 110px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 浮動裝飾元素 -->
+    <div class="floating-decorations">
+        <div class="floating-shape triangle"></div>
+        <div class="floating-shape circle" style="width: 25px; height: 25px;"></div>
+        <div class="floating-shape square" style="width: 20px; height: 20px;"></div>
+        <div class="floating-shape hexagon"></div>
+        <div class="floating-shape circle" style="width: 15px; height: 15px;"></div>
+        <div class="floating-shape triangle" style="border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 26px solid #92A8C0;"></div>
+        <div class="floating-shape square" style="width: 18px; height: 18px; background: #8BBF9F;"></div>
+        <div class="floating-shape hexagon" style="width: 22px; height: 22px; background: #A39BBE;"></div>
+    </div>
+
+    <!-- SEMICON TAIWAN 2025 Banner -->
+    <div class="semicom-banner">
+        <div class="banner-left">
+            <div class="brand-container">
+                <div class="brand-logo">
+                    <div class="brand-semicom">SEMICON®</div>
+                    <div class="brand-taiwan">TAIWAN</div>
+                    <div class="brand-chinese">國際半導體展</div>
+                </div>
+            </div>
+            <div class="abstract-patterns">
+                <div class="pattern-circle circle-1"></div>
+                <div class="pattern-circle circle-2"></div>
+                <div class="pattern-ring ring-1"></div>
+                <div class="pattern-ring ring-2"></div>
+                <div class="pattern-dot dot-1"></div>
+                <div class="pattern-dot dot-2"></div>
+            </div>
+        </div>
+        <div class="banner-right">
+            <div class="banner-year">2025</div>
+            <div class="banner-details">
+                <div class="detail-item">
+                    <span class="detail-icon">🕒</span>
+                    <span class="detail-text">2025 9/10~9/12</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-icon">📍</span>
+                    <span class="detail-text">Booth: P5825</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-text">南港展覽館二館</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 導航欄 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>Avocado AI</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="products.html" class="nav-link">Products</a>
+                                    <a href="about-us.html" class="nav-link">About us</a>
+                <a href="join-us.html" class="nav-link">Join us</a>
+                <a href="contact-us.html" class="nav-link">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要橫幅區域 -->
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <!-- Ballpit 背景效果容器 -->
+            <div id="ballpit-background"></div>
+            
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="hero-text">
+                        <div class="hero-category">智能資安</div>
+                        <h1 class="hero-title">Avocado AI</h1>
+                        <div class="hero-subtitle-text">智能平台</div>
+                        <p class="hero-description">
+                            Avocado AI 致力於透過與產業領導者的強強聯手，共同推動資安技術的革新。我們與國際知名企業啟碁科技 (WNC) 簽署了戰略技術合作協議，共同開發 ThreatCado XDR 全方位資安防護平台，這項合作證明了我們在 AI 威脅分析領域的領先地位和市場潛力。
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#products" class="hero-btn primary">立即體驗</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="hero-avocado">
+                        <div class="avocado-icon">
+                            <div class="avocado-outer-ring"></div>
+                            <div class="avocado-inner-circle">
+                                <div class="avocado-face">
+                                    <div class="avocado-eyes">
+                                        <div class="eye"></div>
+                                        <div class="eye"></div>
+                                    </div>
+                                    <div class="avocado-mouth"></div>
+                                </div>
+                            </div>
+                            <div class="avocado-stem"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="floating-elements">
+                <div class="floating-circle circle-1"></div>
+                <div class="floating-circle circle-2"></div>
+                <div class="floating-circle circle-3"></div>
+                <div class="floating-circle circle-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 產品介紹區域 -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="products-content">
+                <div class="product-image">
+                    <img src="../images/product-image-f03368.png" alt="ThreatCado XDR" class="product-img">
+                </div>
+                <div class="product-info">
+                    <div class="product-badge">
+                        <span data-translate="products.highlight">核心產品亮點</span>
+                    </div>
+                    <h2 class="product-title" data-translate="products.title">ThreatCado XDR</h2>
+                    <h3 class="product-subtitle" data-translate="products.subtitle">SenseL 智能引擎</h3>
+                    <p class="product-description" data-translate="products.description">
+                        ThreatCado XDR 是一個高度整合的延伸偵測與回應平台，核心由強大的 SenseL AI 偵測引擎驅動。它無縫整合了 AnomalyShield（負責異常偵測與 AI 驅動分析）和 ThreatScope（偵測已知攻擊模式或可疑行為），結合 EDR 與 NDR 的全面遙測數據，為您提供無與倫比的威脅洞察與防護能力。
+                    </p>
+                    <a href="products.html" class="product-cta" data-translate="products.cta">探索產品</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 關於我們區域 -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <p data-translate="about.paragraph1">
+                        ThreatCado XDR，新世代資安智能服務平台，專為中小型企業量身打造。我們通過全面的端點防護 (EDR)、精準的網路偵測與回應 (NDR)、以及AI 驅動的智能化威脅偵測，實現動態風險評估與即時事件響應。
+                    </p>
+                    <p data-translate="about.paragraph2">
+                        我們深知您的需求，因此 ThreatCado XDR 不僅提供卓越的技術效能，更具備高性價比與簡便的部署管理優勢。我們承諾完善的客戶支援與售後服務，包括直觀的部署引導、全天候監控及客製化安全優化建議，確保您的企業能夠心無旁騖地專注於核心業務發展，同時享受無縫且穩定的頂級安全防護體驗。
+                    </p>
+                </div>
+                <div class="about-logo">
+                    <img src="../images/logo-white.png" alt="Avocado AI Logo" class="logo-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 為什麼選擇 Avocado 區域 -->
+    <section class="why-avocado-section">
+        <div class="container">
+            <div class="why-content">
+                <div class="why-header">
+                    <div class="why-circle"></div>
+                    <h2 class="why-title" data-translate="why.title">Why Avocado?</h2>
+                </div>
+                <div class="why-intro">
+                    <p data-translate="why.intro">
+                        Avocado.ai 是一家專注於人工智慧與資訊安全整合應用的科技新創公司。我們不只提供產品，更提供一套全面且智能的資安解決方案，讓您在複雜的網路威脅面前保持領先
+                    </p>
+                </div>
+                <div class="why-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <img src="../images/ellipse19.svg" alt="AI 驅動" class="feature-img">
+                        </div>
+                        <div class="feature-content">
+                            <h3 data-translate="why.feature1.title">AI 驅動的獨特優勢</h3>
+                            <p data-translate="why.feature1.desc">
+                                我們引以為傲的SenseL AI 助手，搭載了 LSTM 深度學習模型和輕量級語言模型 (SLM) 的 Agentic RAG 技術。精準識別零時攻擊、內部攻擊以及程式碼注入等新型攻擊模式。我們不僅偵測異常分數，更深入分析其背後的潛在威脅。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <img src="../images/ellipse20.svg" alt="數據轉化" class="feature-img">
+                        </div>
+                        <div class="feature-content">
+                            <h3 data-translate="why.feature2.title">從數據到決策的智能轉化</h3>
+                            <p data-translate="why.feature2.desc">
+                                透過將 Wazuh EDR 和 NDR 實時遙測數據匯入 XDR 資料湖，系統能自動關聯事件並構建威脅圖形 (Threat Graph)。SenseL 則能基於此圖形與威脅情報庫（透過 RAG 技術）回應分析人員查詢，或自動摘要安全事件，提供引導式調查建議，提升 SOC 分析師的效率。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <img src="../images/ellipse21.svg" alt="攻防模擬" class="feature-img">
+                        </div>
+                        <div class="feature-content">
+                            <h3 data-translate="why.feature3.title">全面攻防模擬能力</h3>
+                            <p data-translate="why.feature3.desc">
+                                具備業界領先的AI 驅動攻防模擬引擎，能動態生成多樣化攻擊路徑。我們的Avocado 威脅獵捕平台整合 EDR / NDR / Syslog 資料，提供主動威脅獵捕。此外，還有供應鏈滲透模擬系統和針對 ICS/SCADA 的安全測試工具鏈。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <img src="../images/ellipse22.svg" alt="高效能" class="feature-img">
+                        </div>
+                        <div class="feature-content">
+                            <h3 data-translate="why.feature4.title">高效能與高性價比</h3>
+                            <p data-translate="why.feature4.desc">
+                                我們理解中小型企業的預算考量。ThreatCado XDR 的設計理念就是提供競爭力的價格，無需額外投資於昂貴的資安硬體或專業人員。透過 AI 驅動的自動化分析與回應，有效縮短應變時間，迅速遏制安全事件，真正實現高效能與高性價比。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 合作夥伴區域 -->
+    <section class="partnership-section">
+        <div class="container">
+            <div class="partnership-content">
+                <div class="partnership-header">
+                    <div class="partnership-logo">
+                        <img src="../images/logo-white.png" alt="WNC Logo" class="wnc-logo">
+                    </div>
+                    <h2 class="partnership-title" data-translate="partnership.title">cooperations</h2>
+                    <h3 class="partnership-subtitle" data-translate="partnership.subtitle">策略合作｜與啟碁科技（WNC）建立深度技術夥伴關係</h3>
+                </div>
+                <div class="partnership-info">
+                    <div class="partnership-image">
+                        <img src="../images/product-image-f03368.png" alt="合作背景" class="partnership-img">
+                    </div>
+                    <div class="partnership-text">
+                        <p data-translate="partnership.desc">
+                            Avocado.ai 致力於透過與產業領導者的強強聯手，共同推動資安技術的革新。我們與國際知名企業 啟碁科技 (WNC) 簽署了戰略技術合作協議，共同開發 ThreatCado XDR 全方位資安防護平台，這項合作證明了我們在 AI 威脅分析領域的領先地位和市場潛力。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 行動呼籲區域 -->
+    <section id="connect" class="cta-section">
+        <div class="cta-background">
+            <div class="cta-content">
+                <h2 class="cta-title">
+                    立即行動！<br>
+                    想了解更多？我們提供免費顧問諮詢與試用，<br>
+                    讓您親身體驗 ThreatCado XDR 帶來的智能安全防護！
+                </h2>
+                <div class="cta-buttons">
+                    <a href="#contact" class="cta-btn primary" data-translate="cta.btn.consult">免費諮詢</a>
+                    <a href="products.html" class="cta-btn secondary" data-translate="cta.btn.details">產品詳情</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer id="join" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>Avocado AI</span>
+                </div>
+                <div class="footer-text">
+                    <p data-translate="footer.copyright">&copy; 2024 Avocado AI. All rights reserved. 智能資安防護平台</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/language-switcher.js"></script>
+    
+    <!-- React 和 ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Ballpit 背景效果組件 -->
+    <script>
+        // 簡單的 2D Canvas Ballpit 效果
+        class Ballpit {
+            constructor(containerId) {
+                this.container = document.getElementById(containerId);
+                if (!this.container) return;
+                
+                this.canvas = document.createElement('canvas');
+                this.canvas.style.width = '100%';
+                this.canvas.style.height = '100%';
+                this.canvas.style.position = 'absolute';
+                this.canvas.style.top = '0';
+                this.canvas.style.left = '0';
+                this.canvas.style.pointerEvents = 'none';
+                this.canvas.style.zIndex = '1';
+                
+                this.container.appendChild(this.canvas);
+                
+                this.ctx = this.canvas.getContext('2d');
+                this.balls = [];
+                this.mouse = { x: 0, y: 0 };
+                this.animationId = null;
+                
+                this.init();
+            }
+            
+            init() {
+                this.resizeCanvas();
+                this.createBalls();
+                this.animate();
+                this.bindEvents();
+            }
+            
+            resizeCanvas() {
+                const rect = this.container.getBoundingClientRect();
+                this.canvas.width = rect.width;
+                this.canvas.height = rect.height;
+            }
+            
+            createBalls() {
+                this.balls = [];
+                const ballCount = 100;
+                
+                for (let i = 0; i < ballCount; i++) {
+                    this.balls.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height + this.canvas.height * 0.2,
+                        vx: (Math.random() - 0.5) * 0.8,
+                        vy: (Math.random() - 0.5) * 0.8,
+                        radius: Math.random() * 12 + 6,
+                        color: Math.random() > 0.3 ? '#E8F5E8' : '#FFFFFF',
+                        opacity: Math.random() * 0.7 + 0.3,
+                        bounce: 0.8,
+                        gravity: 0.002
+                    });
+                }
+            }
+            
+            updateBalls() {
+                this.balls.forEach(ball => {
+                    // 更新位置
+                    ball.x += ball.vx;
+                    ball.y += ball.vy;
+                    
+                    // 重力效果
+                    ball.vy += ball.gravity;
+                    
+                    // 邊界碰撞
+                    if (ball.x - ball.radius < 0) {
+                        ball.x = ball.radius;
+                        ball.vx = Math.abs(ball.vx) * ball.bounce;
+                    }
+                    if (ball.x + ball.radius > this.canvas.width) {
+                        ball.x = this.canvas.width - ball.radius;
+                        ball.vx = -Math.abs(ball.vx) * ball.bounce;
+                    }
+                    if (ball.y - ball.radius < 0) {
+                        ball.y = ball.radius;
+                        ball.vy = Math.abs(ball.vy) * ball.bounce;
+                    }
+                    if (ball.y + ball.radius > this.canvas.height) {
+                        ball.y = this.canvas.height - ball.radius;
+                        ball.vy = -Math.abs(ball.vy) * ball.bounce;
+                    }
+                    
+                    // 滑鼠互動
+                    const dx = ball.x - this.mouse.x;
+                    const dy = ball.y - this.mouse.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const maxDistance = 120;
+                    
+                    if (distance < maxDistance) {
+                        const force = (maxDistance - distance) / maxDistance;
+                        const angle = Math.atan2(dy, dx);
+                        ball.vx += Math.cos(angle) * force * 0.03;
+                        ball.vy += Math.sin(angle) * force * 0.03;
+                    }
+                });
+            }
+            
+            drawBalls() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // 繪製背景漸層
+                const gradient = this.ctx.createLinearGradient(0, 0, 0, this.canvas.height);
+                gradient.addColorStop(0, '#FEFCF8');
+                gradient.addColorStop(1, '#F8F6EE');
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // 繪製球體
+                this.balls.forEach(ball => {
+                    this.ctx.save();
+                    this.ctx.globalAlpha = ball.opacity;
+                    
+                    // 球體陰影
+                    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+                    this.ctx.beginPath();
+                    this.ctx.arc(ball.x + 2, ball.y + 2, ball.radius, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    // 球體主體
+                    const ballGradient = this.ctx.createRadialGradient(
+                        ball.x - ball.radius * 0.3,
+                        ball.y - ball.radius * 0.3,
+                        0,
+                        ball.x,
+                        ball.y,
+                        ball.radius
+                    );
+                    ballGradient.addColorStop(0, '#ffffff');
+                    ballGradient.addColorStop(0.7, ball.color);
+                    ballGradient.addColorStop(1, ball.color);
+                    
+                    this.ctx.fillStyle = ballGradient;
+                    this.ctx.beginPath();
+                    this.ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    // 高光
+                    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                    this.ctx.beginPath();
+                    this.ctx.arc(
+                        ball.x - ball.radius * 0.3,
+                        ball.y - ball.radius * 0.3,
+                        ball.radius * 0.3,
+                        0, Math.PI * 2
+                    );
+                    this.ctx.fill();
+                    
+                    // 邊框
+                    this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                    this.ctx.lineWidth = 1;
+                    this.ctx.beginPath();
+                    this.ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+                    this.ctx.stroke();
+                    
+                    this.ctx.restore();
+                });
+            }
+            
+            animate() {
+                this.updateBalls();
+                this.drawBalls();
+                this.animationId = requestAnimationFrame(() => this.animate());
+            }
+            
+            bindEvents() {
+                // 滑鼠移動
+                this.container.addEventListener('mousemove', (e) => {
+                    const rect = this.container.getBoundingClientRect();
+                    this.mouse.x = e.clientX - rect.left;
+                    this.mouse.y = e.clientY - rect.top;
+                });
+                
+                // 視窗大小變化
+                window.addEventListener('resize', () => {
+                    this.resizeCanvas();
+                    this.createBalls();
+                });
+            }
+            
+            destroy() {
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                }
+            }
+        }
+        
+        // 當頁面載入完成後初始化 Ballpit
+        document.addEventListener('DOMContentLoaded', () => {
+            new Ballpit('ballpit-background');
+        });
+    </script>
+    
+    <!-- 圖片載入狀態檢查 -->
+    <script>
+        // 檢查所有圖片是否正確載入
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            let loadedCount = 0;
+            let totalCount = images.length;
+            
+            images.forEach((img, index) => {
+                img.addEventListener('load', function() {
+                    loadedCount++;
+                    console.log(`圖片 ${index + 1}/${totalCount} 載入成功: ${this.src}`);
+                    
+                    if (loadedCount === totalCount) {
+                        console.log('所有圖片載入完成！');
+                    }
+                });
+                
+                img.addEventListener('error', function() {
+                    console.error(`圖片載入失敗: ${this.src}`);
+                    // 為載入失敗的圖片添加錯誤樣式
+                    this.style.border = '2px solid red';
+                    this.style.backgroundColor = '#ffebee';
+                    this.alt = '圖片載入失敗';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
