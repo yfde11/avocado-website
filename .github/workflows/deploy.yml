@@ -17,13 +17,8 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Prepare ZIP package
-        run: |
-          cd website-for-deployment
-          zip -r ../site.zip .
-
-      - name: Deploy to Azure Web App
+      - name: Deploy to Azure Web App (No ZIP)
         uses: azure/webapps-deploy@v2
         with:
           app-name: "avocado-web"
-          package: "site.zip"
+          package: "website-for-deployment/html"
