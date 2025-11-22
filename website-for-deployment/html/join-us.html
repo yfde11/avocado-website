@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@
     <script src="../js/language-switcher.js"></script>
     <script>
         // 強制初始化語言切換器
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 if (window.AvocadoLanguage && !document.querySelector('.language-switcher')) {
                     // 強制重新創建語言切換按鈕
@@ -34,36 +35,37 @@
             pointer-events: none;
             overflow: hidden;
         }
-        
+
         /* 確保內容在 Dynamic Background 效果上方 */
         .join-hero-content {
             position: relative;
             z-index: 10;
         }
-        
+
         .join-hero-text {
             position: relative;
             z-index: 10;
         }
-        
+
         .join-hero-title {
             position: relative;
             z-index: 10;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
-        
+
         .join-hero-subtitle {
             position: relative;
             z-index: 10;
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
         }
-        
+
         .join-decorations {
             position: relative;
             z-index: 5;
         }
     </style>
 </head>
+
 <body>
     <!-- 浮動裝飾元素 -->
     <div class="floating-decorations">
@@ -72,7 +74,9 @@
         <div class="floating-shape square" style="width: 20px; height: 20px;"></div>
         <div class="floating-shape hexagon"></div>
         <div class="floating-shape circle" style="width: 15px; height: 15px;"></div>
-        <div class="floating-shape triangle" style="border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 26px solid #92A8C0;"></div>
+        <div class="floating-shape triangle"
+            style="border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 26px solid #92A8C0;">
+        </div>
         <div class="floating-shape square" style="width: 18px; height: 18px; background: #8BBF9F;"></div>
         <div class="floating-shape hexagon" style="width: 22px; height: 22px; background: #A39BBE;"></div>
     </div>
@@ -84,9 +88,9 @@
                 <span>Avocado AI</span>
             </div>
             <div class="nav-menu">
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="../index.html" class="nav-link">Home</a>
                 <a href="products.html" class="nav-link">Products</a>
-                                    <a href="about-us.html" class="nav-link">About us</a>
+                <a href="about-us.html" class="nav-link">About us</a>
                 <a href="join-us.html" class="nav-link active">Join us</a>
                 <a href="contact-us.html" class="nav-link">Contact Us</a>
             </div>
@@ -98,7 +102,7 @@
         <div class="join-hero-background">
             <!-- React Dynamic Background 效果容器 -->
             <div id="dynamic-background"></div>
-            
+
             <div class="container">
                 <div class="join-hero-content">
                     <div class="join-hero-text">
@@ -189,8 +193,8 @@
                         <div class="requirement-item">
                             <span class="requirement-label">【工作內容】</span>
                             <p>監控、分析 Windows Event Viewer 日誌事件<br>
-                               透過 Wireshark 或其他工具觀察與分析封包流量，撰寫 snort 規則<br>
-                               使用 Wazuh 平台進行日誌分析與威脅偵測</p>
+                                透過 Wireshark 或其他工具觀察與分析封包流量，撰寫 snort 規則<br>
+                                使用 Wazuh 平台進行日誌分析與威脅偵測</p>
                         </div>
                     </div>
                 </div>
@@ -211,9 +215,9 @@
                         <div class="requirement-item">
                             <span class="requirement-label">【工作內容】</span>
                             <p>測試與優化 ThreatCado XDR 系統模組（Log 解析、自動通報、Threat Graph）<br>
-                               撰寫針對 OT 場域的資安建議與 SOP<br>
-                               協助 SBIR、工業合作場域之專案進行<br>
-                               整合多來源情資（Wazuh、EDR）至分析平台</p>
+                                撰寫針對 OT 場域的資安建議與 SOP<br>
+                                協助 SBIR、工業合作場域之專案進行<br>
+                                整合多來源情資（Wazuh、EDR）至分析平台</p>
                         </div>
                     </div>
                 </div>
@@ -250,15 +254,15 @@
                         <div class="requirement-item">
                             <span class="requirement-label">【必要條件】</span>
                             <p>資訊工程、資訊管理或相關科系背景<br><br>
-                               具備前端與後端開發經驗，並熟悉以下任一後端框架：<br>
-                               - Flask<br>
-                               - FastAPI<br>
-                               - Node.js<br><br>
-                               熟悉以下工具與環境操作：<br>
-                               - Postman（API 測試）<br>
-                               - Docker（容器化部署）<br>
-                               - Linux 作業環境<br>
-                               - Git 版本控制工具</p>
+                                具備前端與後端開發經驗，並熟悉以下任一後端框架：<br>
+                                - Flask<br>
+                                - FastAPI<br>
+                                - Node.js<br><br>
+                                熟悉以下工具與環境操作：<br>
+                                - Postman（API 測試）<br>
+                                - Docker（容器化部署）<br>
+                                - Linux 作業環境<br>
+                                - Git 版本控制工具</p>
                         </div>
                     </div>
                 </div>
@@ -295,26 +299,26 @@
     </footer>
 
     <script src="../js/script.js"></script>
-    
+
     <!-- 圖片載入狀態檢查 -->
     <script>
         // 檢查所有圖片是否正確載入
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const images = document.querySelectorAll('img');
             let loadedCount = 0;
             let totalCount = images.length;
-            
+
             images.forEach((img, index) => {
-                img.addEventListener('load', function() {
+                img.addEventListener('load', function () {
                     loadedCount++;
                     console.log(`圖片 ${index + 1}/${totalCount} 載入成功: ${this.src}`);
-                    
+
                     if (loadedCount === totalCount) {
                         console.log('所有圖片載入完成！');
                     }
                 });
-                
-                img.addEventListener('error', function() {
+
+                img.addEventListener('error', function () {
                     console.error(`圖片載入失敗: ${this.src}`);
                     // 為載入失敗的圖片添加錯誤樣式
                     this.style.border = '2px solid red';
@@ -324,20 +328,20 @@
             });
         });
     </script>
-    
+
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
-        
+
         // Dynamic Background 效果組件
         const DynamicBackground = () => {
             const canvasRef = useRef(null);
             const containerRef = useRef(null);
-            
+
             useEffect(() => {
                 const canvas = canvasRef.current;
                 const ctx = canvas.getContext('2d');
                 let animationId;
-                
+
                 const resizeCanvas = () => {
                     const container = containerRef.current;
                     if (container) {
@@ -345,10 +349,10 @@
                         canvas.height = container.offsetHeight;
                     }
                 };
-                
+
                 const waves = [];
                 const waveCount = 3;
-                
+
                 // 創建波浪
                 for (let i = 0; i < waveCount; i++) {
                     waves.push({
@@ -360,33 +364,33 @@
                         color: ['#8BBF9F', '#A39BBE', '#92A8C0'][i]
                     });
                 }
-                
+
                 const animate = () => {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    
+
                     // 繪製波浪
                     waves.forEach((wave, index) => {
                         ctx.beginPath();
                         ctx.moveTo(0, wave.y);
-                        
+
                         for (let x = 0; x < canvas.width; x++) {
                             const y = wave.y + Math.sin(x * wave.length + Date.now() * wave.frequency) * wave.amplitude;
                             ctx.lineTo(x, y);
                         }
-                        
+
                         ctx.lineTo(canvas.width, canvas.height);
                         ctx.lineTo(0, canvas.height);
                         ctx.closePath();
-                        
+
                         // 創建漸層
                         const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
                         const color = wave.color;
                         gradient.addColorStop(0, `${color}20`);
                         gradient.addColorStop(1, `${color}05`);
-                        
+
                         ctx.fillStyle = gradient;
                         ctx.fill();
-                        
+
                         // 繪製波浪線
                         ctx.beginPath();
                         ctx.moveTo(0, wave.y);
@@ -398,41 +402,41 @@
                         ctx.lineWidth = 2;
                         ctx.stroke();
                     });
-                    
+
                     // 繪製浮動圓圈
                     for (let i = 0; i < 8; i++) {
                         const time = Date.now() * 0.001;
                         const x = (canvas.width * 0.5) + Math.sin(time + i) * 100;
                         const y = (canvas.height * 0.5) + Math.cos(time + i * 0.5) * 80;
                         const size = Math.sin(time + i) * 10 + 15;
-                        
+
                         ctx.beginPath();
                         ctx.arc(x, y, size, 0, Math.PI * 2);
                         ctx.fillStyle = `rgba(139, 191, 159, ${0.1 + Math.sin(time + i) * 0.1})`;
                         ctx.fill();
                     }
-                    
+
                     animationId = requestAnimationFrame(animate);
                 };
-                
+
                 resizeCanvas();
                 animate();
-                
+
                 const resizeObserver = new ResizeObserver(resizeCanvas);
                 if (containerRef.current) {
                     resizeObserver.observe(containerRef.current);
                 }
-                
+
                 return () => {
                     cancelAnimationFrame(animationId);
                     resizeObserver.disconnect();
                 };
             }, []);
-            
+
             return (
                 <div ref={containerRef} id="dynamic-background">
-                    <canvas 
-                        ref={canvasRef} 
+                    <canvas
+                        ref={canvasRef}
                         style={{
                             position: 'absolute',
                             top: 0,
@@ -444,10 +448,10 @@
                 </div>
             );
         };
-        
+
         // 渲染 Dynamic Background
         ReactDOM.render(<DynamicBackground />, document.getElementById('dynamic-background'));
     </script>
 </body>
-</html>
 
+</html>

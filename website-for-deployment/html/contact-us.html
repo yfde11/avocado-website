@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,7 @@
     <script src="../js/language-switcher.js"></script>
     <script>
         // 強制初始化語言切換器
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 if (window.AvocadoLanguage && !document.querySelector('.language-switcher')) {
                     // 強制重新創建語言切換按鈕
@@ -639,6 +640,7 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+
             .hero-container,
             .form-container {
                 grid-template-columns: 1fr;
@@ -664,6 +666,7 @@
         }
 
         @media (max-width: 480px) {
+
             .nav-container,
             .hero-container,
             .contact-info-container,
@@ -688,6 +691,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- React 背景效果容器 -->
     <div id="react-background"></div>
@@ -699,7 +703,7 @@
                 <span>Avocado AI</span>
             </div>
             <div class="nav-menu">
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="../index.html" class="nav-link">Home</a>
                 <a href="products.html" class="nav-link">Products</a>
                 <a href="about-us.html" class="nav-link">About us</a>
                 <a href="join-us.html" class="nav-link">Join us</a>
@@ -712,15 +716,17 @@
     <section class="hero-section">
         <!-- React Gradient Mesh 背景效果容器 -->
         <div id="gradient-mesh-background"></div>
-        
+
         <div class="hero-container">
             <div class="hero-content">
                 <h1 data-translate="contact.hero.title">聯絡我們</h1>
-                <p data-translate="contact.hero.subtitle">準備好使用 AI 驅動的網路安全來保護您的企業了嗎？與我們的專家團隊聯繫，了解 Avocado AI 如何保護您的數位資產。</p>
+                <p data-translate="contact.hero.subtitle">準備好使用 AI 驅動的網路安全來保護您的企業了嗎？與我們的專家團隊聯繫，了解 Avocado AI 如何保護您的數位資產。
+                </p>
             </div>
             <div class="hero-image">
                 <div class="image-frame"></div>
-                <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="網路安全與 AI 技術">
+                <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                    alt="網路安全與 AI 技術">
             </div>
         </div>
     </section>
@@ -730,7 +736,7 @@
         <div class="contact-info-container">
             <h2 class="section-title" data-translate="contact.info.title">聯絡資訊</h2>
             <p class="section-description">與我們的網路安全專家聯繫，發現 Avocado AI 如何透過尖端 AI 技術轉變您的安全基礎設施。</p>
-            
+
             <div class="contact-cards">
                 <div class="contact-card">
                     <div class="contact-icon">
@@ -739,7 +745,7 @@
                     <h3>+886 2 2345 6789</h3>
                     <p>24/7 安全支援熱線</p>
                 </div>
-                
+
                 <div class="contact-card">
                     <div class="contact-icon">
                         <i class="fas fa-envelope"></i>
@@ -747,7 +753,7 @@
                     <h3>contact@avocado.ai</h3>
                     <p>獲得專家網路安全建議</p>
                 </div>
-                
+
                 <div class="contact-card">
                     <div class="contact-icon">
                         <i class="fas fa-map-marker-alt"></i>
@@ -765,7 +771,7 @@
             <div class="contact-form">
                 <h2 data-translate="contact.form.title">與我們聯繫！</h2>
                 <p>準備好革新您的網路安全了嗎？填寫下面的表單，我們的 AI 安全專家將在 24 小時內回覆您。</p>
-                
+
                 <form>
                     <div class="form-group">
                         <input type="email" placeholder="電子郵件地址" required>
@@ -779,15 +785,17 @@
                     <button type="submit" class="submit-btn" data-translate="contact.form.submit">發送訊息</button>
                 </form>
             </div>
-            
+
             <div class="location-section">
                 <h2>我們的位置</h2>
                 <p>參觀我們位於台北的 AI 網路安全創新中心，我們在這裡開發尖端的威脅偵測和回應解決方案。</p>
-                
+
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7!2d121.5654!3d25.0330!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb6da9c9e1f%3A0x1206bcf082fd10a6!2sTaipei%2C%20Taiwan!5e0!3m2!1sen!2s!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.7!2d121.5654!3d25.0330!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb6da9c9e1f%3A0x1206bcf082fd10a6!2sTaipei%2C%20Taiwan!5e0!3m2!1sen!2s!4v1234567890"
+                        allowfullscreen="" loading="lazy"></iframe>
                 </div>
-                
+
                 <div class="social-icons">
                     <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
                     <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
@@ -804,12 +812,12 @@
         <div class="newsletter-container">
             <h2 data-translate="contact.newsletter.title">保持更新</h2>
             <p data-translate="contact.newsletter.subtitle">訂閱我們的網路安全電子報，透過最新的 AI 安全見解和更新，領先於新興威脅。</p>
-            
+
             <form class="newsletter-form">
                 <input type="email" placeholder="輸入您的電子郵件地址" required>
                 <button type="submit" data-translate="contact.newsletter.subscribe">訂閱</button>
             </form>
-            
+
             <a href="#" class="website-link">www.avocado.ai</a>
         </div>
     </section>
@@ -829,7 +837,7 @@
                         <a href="#" class="social-icon"><i class="fas fa-shield-alt"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-links">
                     <h4>產品</h4>
                     <ul>
@@ -840,7 +848,7 @@
                         <li><a href="#">安全分析</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-links">
                     <h4>資源</h4>
                     <ul>
@@ -851,7 +859,7 @@
                         <li><a href="#">支援中心</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="work-hours">
                     <h4>支援時間</h4>
                     <p>24/7 全球支援</p>
@@ -859,7 +867,7 @@
                     <button class="call-btn">獲得支援</button>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>© 2024 Avocado AI - 版權所有 | AI 驅動網路安全解決方案</p>
             </div>
@@ -895,7 +903,7 @@
                 const initParticles = () => {
                     const newParticles = [];
                     const particleCount = Math.min(100, Math.floor(window.innerWidth / 10));
-                    
+
                     for (let i = 0; i < particleCount; i++) {
                         newParticles.push({
                             x: Math.random() * canvas.width,
@@ -924,7 +932,7 @@
                         const dx = particle.x - mousePos.x;
                         const dy = particle.y - mousePos.y;
                         const distance = Math.sqrt(dx * dx + dy * dy);
-                        
+
                         if (distance < 100) {
                             const angle = Math.atan2(dy, dx);
                             particle.vx += Math.cos(angle) * 0.1;
@@ -936,14 +944,14 @@
                 // 繪製粒子
                 const drawParticles = () => {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    
+
                     // 繪製連接線
                     particles.forEach((particle, i) => {
                         particles.slice(i + 1).forEach(otherParticle => {
                             const dx = particle.x - otherParticle.x;
                             const dy = particle.y - otherParticle.y;
                             const distance = Math.sqrt(dx * dx + dy * dy);
-                            
+
                             if (distance < 150) {
                                 ctx.beginPath();
                                 ctx.moveTo(particle.x, particle.y);
@@ -963,7 +971,7 @@
                         ctx.globalAlpha = particle.opacity;
                         ctx.fill();
                     });
-                    
+
                     ctx.globalAlpha = 1;
                 };
 
@@ -1017,7 +1025,7 @@
 
     <script>
         // 導航欄滾動效果
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.style.boxShadow = '0 4px 20px rgba(184, 212, 195, 0.2)';
@@ -1028,7 +1036,7 @@
 
         // 表單提交處理
         document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', function(e) {
+            form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 alert('感謝您聯繫 Avocado AI！我們的網路安全專家將在 24 小時內回覆您。');
             });
@@ -1036,7 +1044,7 @@
 
         // 社交媒體圖標點擊
         document.querySelectorAll('.social-icon').forEach(icon => {
-            icon.addEventListener('click', function(e) {
+            icon.addEventListener('click', function (e) {
                 e.preventDefault();
                 alert('社交媒體連結點擊！這是 Avocado AI 的演示頁面。');
             });
@@ -1044,16 +1052,17 @@
 
         // 聯繫卡片動畫
         document.querySelectorAll('.contact-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
+            card.addEventListener('mouseenter', function () {
                 this.style.transform = 'translateY(-5px)';
             });
-            
-            card.addEventListener('mouseleave', function() {
+
+            card.addEventListener('mouseleave', function () {
                 this.style.transform = 'translateY(0)';
             });
         });
     </script>
-    
+
     <script src="../js/script.js"></script>
 </body>
+
 </html>

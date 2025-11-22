@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate="about.page.title">關於我們 - Avocado AI</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600&family=Urbanist:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600&family=Urbanist:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -23,36 +26,37 @@
             pointer-events: none;
             overflow: hidden;
         }
-        
+
         /* 確保內容在 Particles 效果上方 */
         .hero-content {
             position: relative;
             z-index: 10;
         }
-        
+
         .hero-text {
             position: relative;
             z-index: 10;
         }
-        
+
         .hero-title {
             position: relative;
             z-index: 10;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
-        
+
         .hero-description {
             position: relative;
             z-index: 10;
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
         }
-        
+
         .floating-shapes {
             position: relative;
             z-index: 5;
         }
     </style>
 </head>
+
 <body>
     <!-- 導航欄 -->
     <nav class="navbar">
@@ -61,9 +65,9 @@
                 <span>Avocado AI</span>
             </div>
             <div class="nav-menu">
-                <a href="index.html" class="nav-link">Home</a>
+                <a href="../index.html" class="nav-link">Home</a>
                 <a href="products.html" class="nav-link">Products</a>
-                                    <a href="about-us.html" class="nav-link">About us</a>
+                <a href="about-us.html" class="nav-link">About us</a>
                 <a href="join-us.html" class="nav-link">Join us</a>
                 <a href="contact-us.html" class="nav-link">Contact Us</a>
             </div>
@@ -73,7 +77,7 @@
     <!-- 導航欄 JavaScript 功能 -->
     <script>
         // 導航欄滾動效果
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
@@ -84,7 +88,7 @@
 
         // 導航連結點擊效果
         document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function (e) {
                 // 移除所有 active 類
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 // 添加 active 類到當前點擊的連結
@@ -93,10 +97,10 @@
         });
 
         // 設置當前頁面為 active
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const currentPage = 'about-us.html';
             const navLinks = document.querySelectorAll('.nav-link');
-            
+
             // 根據當前頁面設置 active 狀態
             if (currentPage.includes('about')) {
                 navLinks.forEach(link => {
@@ -106,9 +110,9 @@
                 });
             }
         });
-        
+
         // 強制初始化語言切換器
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 if (window.AvocadoLanguage && !document.querySelector('.language-switcher')) {
                     // 強制重新創建語言切換按鈕
@@ -123,9 +127,9 @@
 
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
-        
+
         // 添加錯誤處理
-        window.addEventListener('error', function(e) {
+        window.addEventListener('error', function (e) {
             console.error('JavaScript Error:', e.error);
         });
 
@@ -157,7 +161,7 @@
             }
         ];
 
-                // 團隊組件
+        // 團隊組件
         const TeamSection = () => {
             return (
                 <div className="team-section">
@@ -196,7 +200,7 @@
                         <div className="about-hero-background" style={{ transform: `translateY(${scrollY * 0.5}px)` }}>
                             {/* Particles 背景效果容器 */}
                             <div id="particles-background"></div>
-                            
+
                             <div className="about-floating-shapes">
                                 <div className="about-shape about-shape-1"></div>
                                 <div className="about-shape about-shape-2"></div>
@@ -215,8 +219,8 @@
                                     我們不只是技術的供應者，因此 ThreatCado XDR 不僅提供整合數據、威脅情報與 AI 驅動的防禦機制，還為用戶實現跨部門支援與數據整合，包含在地威脅情報的引導、全球性威脅資訊的同步與共享，確保您的企業能夠即時掌握最新威脅，並同時享受最直觀且完整的資安保護與支援。
                                 </p>
                             </div>
-        </div>
-    </section>
+                        </div>
+                    </section>
 
                     {/* Company Overview Section */}
                     <section className="company-overview">
@@ -235,7 +239,7 @@
                                 </div>
                                 <div className="overview-visual">
                                     <div className="product-showcase">
-                                                                                <div className="product-item">
+                                        <div className="product-item">
                                             <div className="product-icon">🛡️</div>
                                             <h3 data-translate="about.company.product1.name">ThreatCado XDR</h3>
                                             <p data-translate="about.company.product1.subtitle">整合式資安防護平台</p>
@@ -245,27 +249,27 @@
                                             <h3 data-translate="about.company.product2.name">SenseL 安全助手</h3>
                                             <p data-translate="about.company.product2.subtitle">AI 智能威脅分析</p>
                                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
                     {/* Philosophy Section */}
                     <section className="philosophy-section">
                         <div className="container">
                             <div className="philosophy-content">
-                                                                <h2 data-translate="about.philosophy.title">關於我們</h2>
+                                <h2 data-translate="about.philosophy.title">關於我們</h2>
                                 <div className="philosophy-quote">
                                     <h3 data-translate="about.philosophy.quote">【以簡馭繁】</h3>
                                     <p data-translate="about.philosophy.desc1">在複雜中找到簡單，讓一切都更高效。</p>
                                     <p data-translate="about.philosophy.desc2">每一個強化的功能、每一項設計，都基於您的需求，讓操作、維護、協作更加順暢與高效。</p>
                                 </div>
-            </div>
-                    </div>
+                            </div>
+                        </div>
                     </section>
 
-                    
+
 
                     {/* 科技感時間線區域 */}
                     <section className="tech-timeline-section">
@@ -306,8 +310,8 @@
                                     </p>
                                 </div>
                             </div>
-        </div>
-    </section>
+                        </div>
+                    </section>
 
                     {/* Team Section */}
                     <section className="team-section-wrapper">
@@ -325,7 +329,7 @@
                                     <p data-translate="about.footer.platform">新世代資安智能服務平台</p>
                                 </div>
                                 <div className="footer-links">
-                                    <a href="index.html" data-translate="about.footer.home">首頁</a>
+                                    <a href="../index.html" data-translate="about.footer.home">首頁</a>
                                     <a href="products.html" data-translate="about.footer.products">產品</a>
                                     <a href="about-us.html" data-translate="about.footer.about">關於我們</a>
                                     <a href="join-us.html" data-translate="about.footer.join">加入我們</a>
@@ -347,7 +351,7 @@
             const getCurrentLanguage = () => {
                 return window.AvocadoLanguage ? window.AvocadoLanguage.getCurrentLanguage() : 'zh-TW';
             };
-            
+
             const getStageTitle = (nodeId) => {
                 const stageTitles = {
                     '01': getCurrentLanguage() === 'zh-TW' ? '種子期' : 'Seed',
@@ -358,7 +362,7 @@
                 };
                 return stageTitles[nodeId] || nodeId;
             };
-            
+
             const timelineData = [
                 {
                     id: "01",
@@ -437,7 +441,7 @@
                     ctx.lineWidth = 4;
                     ctx.lineCap = 'round';
                     ctx.setLineDash([20, 10]);
-                    
+
                     // 創建垂直的 S 形彎曲路徑
                     const centerX = width * 0.5;
                     const points = [
@@ -449,17 +453,17 @@
                     ];
 
                     ctx.moveTo(points[0].x, points[0].y);
-                    
+
                     for (let i = 1; i < points.length; i++) {
                         const prev = points[i - 1];
                         const curr = points[i];
-                        
+
                         // 創建平滑的貝塞爾曲線
                         const cp1x = prev.x;
                         const cp1y = prev.y + (curr.y - prev.y) * 0.3;
                         const cp2x = curr.x;
                         const cp2y = curr.y - (curr.y - prev.y) * 0.3;
-                        
+
                         ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, curr.x, curr.y);
                     }
 
@@ -470,7 +474,7 @@
                     gradient.addColorStop(0.5, '#92A8C0');
                     gradient.addColorStop(0.75, '#B8D4C3');
                     gradient.addColorStop(1, '#C4A5A5');
-                    
+
                     ctx.strokeStyle = gradient;
                     ctx.stroke();
 
@@ -484,7 +488,7 @@
                     timelineData.forEach((node, index) => {
                         const x = node.x * width;
                         const y = node.y * height;
-                        
+
                         // 節點外圈光暈（放大）
                         ctx.beginPath();
                         ctx.arc(x, y, 40, 0, Math.PI * 2);
@@ -494,25 +498,25 @@
                         glowGradient.addColorStop(1, `${node.color}00`);
                         ctx.fillStyle = glowGradient;
                         ctx.fill();
-                        
+
                         // 節點外圈（放大）
                         ctx.beginPath();
                         ctx.arc(x, y, 30, 0, Math.PI * 2);
                         ctx.fillStyle = node.color;
                         ctx.fill();
-                        
+
                         // 節點內圈（放大）
                         ctx.beginPath();
                         ctx.arc(x, y, 25, 0, Math.PI * 2);
                         ctx.fillStyle = '#FFFFFF';
                         ctx.fill();
-                        
+
                         // 階段名稱（取代數字編號）
                         const stageName = getStageTitle(node.id);
                         ctx.fillStyle = node.color;
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
-                        
+
                         // 根據語言調整字體和顯示方式
                         if (getCurrentLanguage() === 'zh-TW') {
                             ctx.font = 'bold 11px Inter, "Microsoft JhengHei", sans-serif';
@@ -537,7 +541,7 @@
 
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
-                
+
                 // 添加路徑動畫效果
                 let animationFrame;
                 const animatePath = () => {
@@ -548,12 +552,12 @@
                     drawTimeline();
                     animationFrame = requestAnimationFrame(animatePath);
                 };
-                
+
                 // 延遲啟動動畫，讓節點先出現
                 setTimeout(() => {
                     animatePath();
                 }, 2000);
-                
+
                 return () => {
                     window.removeEventListener('resize', resizeCanvas);
                     if (animationFrame) {
@@ -564,11 +568,11 @@
 
             return (
                 <div ref={containerRef} className="tech-timeline-container">
-                    <canvas 
-                        ref={canvasRef} 
+                    <canvas
+                        ref={canvasRef}
                         className="tech-timeline-canvas"
                     />
-                    
+
                     {timelineData.map((node, index) => (
                         <div
                             key={node.id}
@@ -605,17 +609,17 @@
         };
 
         // TechTimeline 組件已整合到 AboutUs 組件中
-        
+
         // Particles 背景效果組件
         const Particles = () => {
             const canvasRef = useRef(null);
             const containerRef = useRef(null);
-            
+
             useEffect(() => {
                 const canvas = canvasRef.current;
                 const ctx = canvas.getContext('2d');
                 let animationId;
-                
+
                 const resizeCanvas = () => {
                     const container = containerRef.current;
                     if (container) {
@@ -623,10 +627,10 @@
                         canvas.height = container.offsetHeight;
                     }
                 };
-                
+
                 const particles = [];
                 const particleCount = 50;
-                
+
                 // 創建粒子
                 for (let i = 0; i < particleCount; i++) {
                     particles.push({
@@ -639,34 +643,34 @@
                         color: ['#8BBF9F', '#A39BBE', '#92A8C0', '#B8D4C3'][Math.floor(Math.random() * 4)]
                     });
                 }
-                
+
                 const animate = () => {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    
+
                     // 更新和繪製粒子
                     particles.forEach(particle => {
                         particle.x += particle.vx;
                         particle.y += particle.vy;
-                        
+
                         // 邊界檢查
                         if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
                         if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-                        
+
                         // 繪製粒子
                         ctx.beginPath();
                         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(${particle.color === '#8BBF9F' ? '139, 191, 159' : 
-                                               particle.color === '#A39BBE' ? '163, 155, 190' : 
-                                               particle.color === '#92A8C0' ? '146, 168, 192' : 
-                                               '184, 212, 195'}, ${particle.opacity})`;
+                        ctx.fillStyle = `rgba(${particle.color === '#8BBF9F' ? '139, 191, 159' :
+                            particle.color === '#A39BBE' ? '163, 155, 190' :
+                                particle.color === '#92A8C0' ? '146, 168, 192' :
+                                    '184, 212, 195'}, ${particle.opacity})`;
                         ctx.fill();
-                        
+
                         // 繪製連接線
                         particles.forEach(otherParticle => {
                             const dx = particle.x - otherParticle.x;
                             const dy = particle.y - otherParticle.y;
                             const distance = Math.sqrt(dx * dx + dy * dy);
-                            
+
                             if (distance < 100) {
                                 ctx.beginPath();
                                 ctx.moveTo(particle.x, particle.y);
@@ -677,28 +681,28 @@
                             }
                         });
                     });
-                    
+
                     animationId = requestAnimationFrame(animate);
                 };
-                
+
                 resizeCanvas();
                 animate();
-                
+
                 const resizeObserver = new ResizeObserver(resizeCanvas);
                 if (containerRef.current) {
                     resizeObserver.observe(containerRef.current);
                 }
-                
+
                 return () => {
                     cancelAnimationFrame(animationId);
                     resizeObserver.disconnect();
                 };
             }, []);
-            
+
             return (
                 <div ref={containerRef} id="particles-background">
-                    <canvas 
-                        ref={canvasRef} 
+                    <canvas
+                        ref={canvasRef}
                         style={{
                             position: 'absolute',
                             top: 0,
@@ -710,7 +714,7 @@
                 </div>
             );
         };
-        
+
         // 渲染應用
         try {
             console.log('Attempting to render AboutUs component...');
@@ -722,11 +726,12 @@
             // 渲染一個簡單的錯誤頁面
             document.getElementById('root').innerHTML = '<div style="padding: 20px; color: red; font-family: Arial, sans-serif;"><h2>Error loading About Us page</h2><p>Please check console for details.</p><p>Error: ' + error.message + '</p></div>';
         }
-        
+
         // 渲染 Particles 背景
         ReactDOM.render(<Particles />, document.getElementById('particles-background'));
     </script>
-    
+
     <script src="../js/script.js"></script>
 </body>
+
 </html>
