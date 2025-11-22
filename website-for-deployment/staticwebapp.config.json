@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "route": "/html/*",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/*",
+      "allowedRoles": ["anonymous"]
+    }
+  ]
+}
